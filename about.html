@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+    
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
+
+    <!-- TOP BAR -->
+    <div style="display: flex; flex-direction: row; height: 70px; box-sizing: border-box;">
+        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
+
+        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 300px; padding: 0px 20px; align-items: center; border-bottom: #8b2a2a 8px solid;">
+            <span style="font-size: 40px; color: white; font-weight: 600; letter-spacing: 2px;" class="michroma-regular">CCSVP</span>
+        </div>
+        
+        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 900px; padding: 0px 20px; align-items: center; justify-content: right; border-bottom: #8b2a2a 8px solid;">
+            <div style="flex-direction: row; display: flex;">
+                <button id="about-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    ABOUT <span id="about-dropdown-arrow" class="dropdown-arrow"></span>
+                </button>
+                <button id="projects-research-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    PROJECTS & RESEARCH <span id="projects-research-dropdown-arrow" class="dropdown-arrow"></span>
+                </button>
+                <button id="education-outreach-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    EDUCATION & OUTREACH <span id="education-outreach-dropdown-arrow" class=""></span>
+                </button>
+                <button id="contact-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    CONTACT <span id="contact-dropdown-arrow" class=""></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
+    </div>
+</head>
+    
+<body>
+    
+    <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
+    <!-- <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
+        <div style="display: flex; flex: 1 1 0px;"> </div>
+
+        <div style="display: flex; flex: 0 1 1600px; flex-direction: column; position: relative;">
+            <img src="images/about.jpg" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; " alt="Home Hero Image">
+            
+            
+        </div>
+
+        <div style="display: flex; flex: 1 1 0px;"> </div>
+    </div> -->
+
+    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
+    <div style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
+
+        <div style="display: flex; flex: 0 1 1600px; flex-direction: column;">
+            <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
+                
+                
+                <div style="width: 80%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-header">Services</span>
+                    </div>
+                    
+                    
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        We provide a range of custom services to stakeholders interested in the criminal justice field. Whether you need help writing a grant, a survey seeking input of community members, assistance in developing new policies or standard operating procedures, observational studies of practices, or formal evaluations of large multi-year projects, CCSVP will listen and discuss any needs your agency or organization may have and assemble the right team to assist your community.
+                        <br><br>
+                        Because we are partially state-funded, we will strive to offer free or reduced-cost services to agencies who have high needs and limited resources.
+                        <br><br>
+                        Some of our work involves:
+                    </p>
+
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-subheader">Grant Writing and Management</span>
+                    </div>
+                    
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        Writing grants can be a daunting task, but we’re here to help maximize your community’s resources. CCSVP has extensive experience in securing grant funding for criminal justice-related projects and has good working relationships with several federal funding agencies. Our experience helps us understand grant agencies’ priorities and match those to your needs to develop competitive grant proposals.
+                        <br><br>
+                        CCSVP can also help you identify funding resources. A wide variety of grant funding covers criminal justice-related topics, but they are often difficult to find. Our staff has a good overview of key funding programs, the dates these funding programs become available and can also assist with grant compliance once you receive an award.
+                    </p>
+
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-subheader">Crime Analysis and Data Analytics</span>
+                    </div>
+
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        One of our areas of expertise is working with criminal justice data and providing actionable data. Our director has over a decade of experience working with numerous data systems (such as CAD and RMS),  and our team can help you leverage the most out of your agency’s data. We can customize a variety of products for your organization, whether this is a one-time operational analysis of your workforce, a recurring weekly COMPSTAT-type report, or developing a community data transparency website including interactive maps and dashboard.
+                        <br><br>
+                        Statistics and maps often are meaningless if not accompanied by interpretation of the practical value of this intelligence. CCSVP has extensive experience providing clear language to a general audience, maximizing the impact of your analytical/intelligence products to all stakeholders.
+                    </p>
+                    
+                </div>
+
+                <div style="width: 20%; height: fit-content; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    
+                    <div class="dark-blue-bg" style="width: 100%; display: flex; justify-content: center; padding: 20px 0; ">
+                        <span class="prompt-regular blue-text" style="font-size: 42px; font-weight: 600; text-align: center; color: white">ABOUT</span>
+                    </div>
+
+                    
+                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 6px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                        Services
+                    </div>
+                    
+                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 2px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                        Mission
+                    </div>
+                    
+                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 2px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                        The Team
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
+    </div>
+    
+</body>
+</html>

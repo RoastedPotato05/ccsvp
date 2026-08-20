@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+    
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
+
+    <!-- TOP BAR -->
+    <div style="display: flex; flex-direction: row; height: 70px; box-sizing: border-box;">
+        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
+
+        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 300px; padding: 0px 20px; align-items: center; border-bottom: #8b2a2a 8px solid;">
+            <span style="font-size: 40px; color: white; font-weight: 600; letter-spacing: 2px;" class="michroma-regular">CCSVP</span>
+        </div>
+        
+        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 900px; padding: 0px 20px; align-items: center; justify-content: right; border-bottom: #8b2a2a 8px solid;">
+            <div style="flex-direction: row; display: flex;">
+                <button id="about-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    ABOUT <span id="about-dropdown-arrow" class="dropdown-arrow"></span>
+                </button>
+                <button id="projects-research-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    PROJECTS & RESEARCH <span id="projects-research-dropdown-arrow" class="dropdown-arrow"></span>
+                </button>
+                <button id="education-outreach-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    EDUCATION & OUTREACH <span id="education-outreach-dropdown-arrow" class=""></span>
+                </button>
+                <button id="contact-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                    CONTACT <span id="contact-dropdown-arrow" class=""></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
+    </div>
+</head>
+    
+<body>
+    
+    <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
+    <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
+
+        <div style="display: flex; flex: 0 1 1600px; flex-direction: column; position: relative;">
+            <img src="images/index.jpg" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; filter: brightness(77%) contrast(145%) saturate(165%);" alt="Home Hero Image">
+            
+            
+        </div>
+
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
+    </div>
+
+    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
+    <div style="display: flex; flex-direction: row; position: relative; margin-top: -140px; z-index: 10; padding-bottom: 60px;">
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
+
+        <div style="display: flex; flex: 0 1 1200px; flex-direction: column;">
+            <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
+                
+                <!-- Left 60% Column: Welcome Content -->
+                <div style="width: 60%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-header">Welcome</span>
+                    </div>
+                    
+                    <p class="prompt-regular" style="margin-top: 20px; font-size: 24px; line-height: 1.6; color: #222;">
+                        <strong>Welcome to the Center for Crime Science and Violence Prevention (CCSVP)</strong>
+                    </p>
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        Our primary focus is to assist all stakeholders in the criminal justice field in their efforts to reduce crime and violence. Our Center works with criminal justice agencies, community organizations, vendors, faculty, and students to improve public safety in the St. Louis and Southern Illinois regions.
+                    </p>
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        We provide a range of services, including grant development, data analytics, crime analysis, mapping, dashboard development,  and (evaluation) research. Please browse our pages to explore the work we have recently completed and projects currently underway. We are always happy to talk with you to see how we can support your approaches to improving justice and public safety. Reach out to us at any time at <span class="red-text">ccsvpbelleville@siue.edu</span> or connect with us on social media. 
+                    </p>
+                </div>
+
+                <!-- Right 40% Column: Stacked Grey Navigation Cards -->
+                <div style="width: 40%; display: flex; flex-direction: column; gap: 15px;">
+                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">About</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Learn about our services and how we contribute to understanding and preventing crime and violence in the surrounding region.</p>
+                    </div>
+
+                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Projects & Research</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">View our current and completed projects and outcomes.</p>
+                    </div>
+
+                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Education & Outreach</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Reach out to us for possible funded opportunities.</p>
+                    </div>
+
+                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Contact</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Need more information?</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
+    </div>
+    
+</body>
+</html>

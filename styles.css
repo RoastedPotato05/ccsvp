@@ -1,0 +1,155 @@
+.debug-border {
+  border: 3px solid red;
+  box-sizing: border-box;
+}
+
+.red-text {
+  color: #eb2020
+}
+
+.dark-red-text {
+  color: #8b2a2a
+}
+
+.light-red-text {
+  color: #ffbfbf
+}
+
+.blue-text {
+  color: #4780b5
+}
+
+.dark-blue-text {
+  color: #244d6d
+}
+
+.light-blue-text {
+  color: #b3d2ea
+}
+
+.red-bg {
+  background-color: #eb2020
+}
+
+.dark-red-bg {
+  background-color: #8b2a2a
+}
+
+.light-red-bg {
+  background-color: #ffbfbf
+}
+
+.blue-bg {
+  background-color: #4780b5
+}
+
+.dark-blue-bg {
+  background-color: #244d6d
+}
+
+.light-blue-bg {
+  background-color: #b3d2ea
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.unica-one-regular {
+  font-family: "Unica One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.prompt-regular {
+  font-family: "Prompt", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+
+.topbar-btn {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0px 20px;
+  cursor: pointer;
+  font-family: "Unica One", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.topbar-btn:hover {
+  transition: background-color 0.1s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-arrow {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(45deg);
+  border-bottom-right-radius: 1px; /* Softens the geometric harshness */
+  margin-left: 10px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.page-header {
+  padding: 0px 0px 0px 15px; /* Adds space between the blue border and text */
+  font-size: 70px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-left: 16px solid #4780b5; /* Moved border here */
+  display: inline-block;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.page-subheader {
+  padding: 0px 0px 0px 15px;
+  font-size: 30px;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-left: 8px solid #eb2020;
+  display: inline-block;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.menu-btn {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0); 
+  transition: background-color 0.1s ease-in-out;
+  pointer-events: none; 
+}
+
+.menu-btn:hover::after {
+  background-color: rgba(0, 0, 0, 0.15); 
+}
