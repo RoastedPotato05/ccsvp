@@ -62,3 +62,80 @@ function initDropdown(container) {
         }
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all page subheaders on the current page[cite: 1]
+    const subheaders = document.querySelectorAll('.page-subheader');
+const sectionsContainer = document.getElementById('sections-container');
+
+if (subheaders.length > 0 && sectionsContainer) {
+    subheaders.forEach((subheader, index) => {
+        if (!subheader.id) {
+            subheader.id = `section-subheader-${index}`;
+        }
+
+        const button = document.createElement('a');
+        button.href = `#${subheader.id}`;
+        button.className = 'prompt-regular menu-btn';
+        button.textContent = subheader.textContent.trim();
+        button.style.color = 'black';
+        button.style.width = '100%';
+        button.style.boxSizing = 'border-box';
+        button.style.fontSize = '18px';
+        
+        // --- CHANGED STYLING FOR MULTI-LINE SUPPORT ---
+        button.style.lineHeight = '1.3'; // Normal line spacing for wrapped text
+        button.style.padding = '14px 15px'; // Consistent vertical and horizontal padding
+        // ----------------------------------------------
+
+        // button.style.borderLeft = '4px solid #4780b5';
+        button.style.borderBottom = '1px solid rgba(0, 0, 0, 0.2)';
+        button.style.backgroundColor = 'rgb(235, 235, 235)';
+        button.style.textDecoration = 'none';
+        button.style.display = 'block'; // Ensures padding applies properly to block layout
+
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            subheader.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        });
+
+        sectionsContainer.appendChild(button);
+    });
+}
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const sectionsCard = document.getElementById('sections-card');
+    
+    if (sectionsCard) {
+        // Track original width and layout parent to preserve column alignment when fixed
+        const parentColumn = sectionsCard.parentElement;
+        const initialWidth = parentColumn.getBoundingClientRect().width;
+        
+        // Calculate when it should stick based on its initial distance from the top of the page
+        const initialOffsetTop = sectionsCard.getBoundingClientRect().top + window.scrollY;
+        const topStickyPosition = 20; // Pixels from top of screen
+
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY >= (initialOffsetTop - topStickyPosition)) {
+                // Switch to fixed tracking so it locks below the topbar
+                sectionsCard.style.position = 'fixed';
+                sectionsCard.style.top = `${topStickyPosition}px`;
+                sectionsCard.style.width = `${initialWidth}px`;
+                sectionsCard.style.zIndex = '100';
+            } else {
+                // Reset back to normal layout flow when scrolled back up
+                sectionsCard.style.position = 'static';
+                sectionsCard.style.width = '100%';
+            }
+        });
+    }
+});

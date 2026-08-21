@@ -2,6 +2,7 @@
 html {
   overflow-y: auto; 
   overflow-x: hidden;
+  scroll-padding-top: 10px;
 }
 
 /* Force the body to stay at 100% of the viewport width, 
