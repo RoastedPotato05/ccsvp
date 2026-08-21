@@ -1,3 +1,24 @@
+/* Remove the forced scrollbar slot */
+html {
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+/* Force the body to stay at 100% of the viewport width, 
+   preventing the layout from recalculating when a scrollbar pops up */
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  
+}
+
+
+
+
+
+
+
 .debug-border {
   border: 3px solid red;
   box-sizing: border-box;
@@ -51,10 +72,6 @@
   background-color: #b3d2ea
 }
 
-body {
-    margin: 0;
-    padding: 0;
-}
 
 .michroma-regular {
   font-family: "Michroma", sans-serif;
@@ -139,6 +156,8 @@ body {
   position: relative;
   cursor: pointer;
   overflow: hidden;
+  text-decoration: none;
+  color: Color;
 }
 
 .menu-btn::after {

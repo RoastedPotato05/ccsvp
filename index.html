@@ -3,42 +3,19 @@
 <meta charset="UTF-8">
     
 <head>
-    <title>Title</title>
+    <title>CCSVP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
-
-    <!-- TOP BAR -->
-    <div style="display: flex; flex-direction: row; height: 70px; box-sizing: border-box;">
-        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
-
-        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 300px; padding: 0px 20px; align-items: center; border-bottom: #8b2a2a 8px solid;">
-            <span style="font-size: 40px; color: white; font-weight: 600; letter-spacing: 2px;" class="michroma-regular">CCSVP</span>
-        </div>
-        
-        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 900px; padding: 0px 20px; align-items: center; justify-content: right; border-bottom: #8b2a2a 8px solid;">
-            <div style="flex-direction: row; display: flex;">
-                <button id="about-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    ABOUT <span id="about-dropdown-arrow" class="dropdown-arrow"></span>
-                </button>
-                <button id="projects-research-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    PROJECTS & RESEARCH <span id="projects-research-dropdown-arrow" class="dropdown-arrow"></span>
-                </button>
-                <button id="education-outreach-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    EDUCATION & OUTREACH <span id="education-outreach-dropdown-arrow" class=""></span>
-                </button>
-                <button id="contact-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    CONTACT <span id="contact-dropdown-arrow" class=""></span>
-                </button>
-            </div>
-        </div>
-
-        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
-    </div>
+    <script src="components.js" defer></script>
+    <script src="main.js" defer></script>
+  
+    
 </head>
     
 <body>
+    <site-topbar></site-topbar>
     
     <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
     <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
@@ -79,25 +56,25 @@
 
                 <!-- Right 40% Column: Stacked Grey Navigation Cards -->
                 <div style="width: 40%; display: flex; flex-direction: column; gap: 15px;">
-                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                    <a href="/ccsvp/about/services.html" class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
                         <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">About</h3>
                         <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Learn about our services and how we contribute to understanding and preventing crime and violence in the surrounding region.</p>
-                    </div>
+                    </a>
 
-                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                    <a href="/ccsvp/projects-research/emergency-reports.html" class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
                         <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Projects & Research</h3>
                         <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">View our current and completed projects and outcomes.</p>
-                    </div>
+                    </a>
 
-                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
-                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Education & Outreach</h3>
-                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Reach out to us for possible funded opportunities.</p>
-                    </div>
+                    <a href="/ccsvp/people.html" class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">People</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Meet the team behind the CCSVP and learn about their expertise and contributions.</p>
+                    </a>
 
-                    <div class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
-                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Contact</h3>
-                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Need more information?</p>
-                    </div>
+                    <a href="/ccsvp/blog.html" class="light-red-bg menu-btn" style="padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.15);">
+                        <h3 style="margin: 0 0 6px 0; font-family: 'Prompt', sans-serif; font-size: 28px; color: #222;">Blog</h3>
+                        <p style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 18px; color: #555;">Stay updated on the latest news from the CCSVP.</p>
+                    </a>
                 </div>
 
             </div>
@@ -107,4 +84,6 @@
     </div>
     
 </body>
+
+
 </html>

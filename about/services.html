@@ -1,44 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
-    
+
 <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CCSVP</title>
+    <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
+    <script src="../components.js" defer></script>
+    <script src="../main.js" defer></script>
 
-    <!-- TOP BAR -->
-    <div style="display: flex; flex-direction: row; height: 70px; box-sizing: border-box;">
-        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
-
-        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 300px; padding: 0px 20px; align-items: center; border-bottom: #8b2a2a 8px solid;">
-            <span style="font-size: 40px; color: white; font-weight: 600; letter-spacing: 2px;" class="michroma-regular">CCSVP</span>
-        </div>
-        
-        <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 900px; padding: 0px 20px; align-items: center; justify-content: right; border-bottom: #8b2a2a 8px solid;">
-            <div style="flex-direction: row; display: flex;">
-                <button id="about-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    ABOUT <span id="about-dropdown-arrow" class="dropdown-arrow"></span>
-                </button>
-                <button id="projects-research-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    PROJECTS & RESEARCH <span id="projects-research-dropdown-arrow" class="dropdown-arrow"></span>
-                </button>
-                <button id="education-outreach-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    EDUCATION & OUTREACH <span id="education-outreach-dropdown-arrow" class=""></span>
-                </button>
-                <button id="contact-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                    CONTACT <span id="contact-dropdown-arrow" class=""></span>
-                </button>
-            </div>
-        </div>
-
-        <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
-    </div>
+    
+    
 </head>
     
 <body>
+    <site-topbar></site-topbar>
     
     <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
     <!-- <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
@@ -94,6 +72,38 @@
                         <br><br>
                         Statistics and maps often are meaningless if not accompanied by interpretation of the practical value of this intelligence. CCSVP has extensive experience providing clear language to a general audience, maximizing the impact of your analytical/intelligence products to all stakeholders.
                     </p>
+
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-subheader">Technology</span>
+                    </div>
+
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        Another area of expertise of our Center is surveillance technology. We have provided consulting and TTA to numerous regional and national police agencies as well as implementing technology in the private sector. Our past projects have included Body-Worn Cameras, facial recognition, CCTV, gunshot detection, Virtual/Augmented Reality and License Plate Reader systems. If your community, agency, or company is considering or seeking to expand its technology footprint, reach out to us. 
+                        <br><br>
+                        CCSVP provides unbiased assistance in how to best address your security concerns in a cost-effective and ethically responsible manner. We can also help connect you to other agencies for peer-to-peer opportunities. As academics, we are skeptics by nature and carefully study the impacts of these technologies. We can advise where, when and how they provide the best benefits and what your organization may reasonably expect in terms of results and return on investment.
+                        <br><br>
+                        We can also help with developing Standard Operating Procedures and policy documents to accompany these products and are happy to provide detailed evaluation studies that can be leveraged to determine continuing funding and investments. Our aim is to help your community, organization or agency get the most out of technology. 
+                        <br><br>
+                        CCSVP also understands that not everyone is supportive of technology and that, in some cases, technology may even be counterproductive; we will always recommend connecting to all stakeholders and believe that transparency is key to ensuring community support and maximum efficacy of investments. We also have extensive experience with the implementation of technology projects and can help advise at all stages of your project. It is our experience that implementation practices determine how successful your technology project will be.
+                    </p>
+
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-subheader">Vendors</span>
+                    </div>
+
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        We will also gladly work with vendors, especially start-ups, who seek to test innovative products that aim to improve public safety, security, accountability or training. CCSVP can connect you to communities and agencies that meet the parameters you need and we are happy to work with you on finding grant funding to develop customized products and test them under real-life conditions.
+                        <br><br>
+                        We are also happy to provide independent field testing of your products and provide unbiased feedback reports on their efficacy. CCSVP will never endorse specific vendors or provide advertising or sales pitches, but we will gladly provide independent review and research on the efficacy of your products. We are an independent university-affiliated, not-for-profit, research center whose main aim is to reduce crime victimization, and we are happy to work with anyone who shares this goal.
+                    </p>
+
+                    <div style="display: inline-flex; width: fit-content; align-items: center;">
+                        <span class="page-subheader">Training and Outreach</span>
+                    </div>
+
+                    <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
+                        As our Center develops, we expect to expand our services with respect to training and outreach activities. At present, however, we are happy to train members of your organization in use of data, mapping and grant writing. Because we still have a limited staff, we cannot always offer on-site services at this moment, but are happy to invite you to make use of our facilities at the Southwestern Illinois Justice & Workforce Development Campus or provide remote support.
+                    </p>
                     
                 </div>
 
@@ -104,17 +114,17 @@
                     </div>
 
                     
-                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 6px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                    <a href="services.html" class="prompt-regular menu-btn" style="color: black; width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 10px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
                         Services
-                    </div>
+                    </a>
                     
-                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 2px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                    <a href="mission.html" class="prompt-regular menu-btn" style="color: black; width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 4px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
                         Mission
-                    </div>
+                    </a>
                     
-                    <div class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 2px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
-                        The Team
-                    </div>
+                    <a href="contact.html" class="prompt-regular menu-btn" style="color: black; width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 4px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
+                        Contact
+                    </a>
                 </div>
 
                 
@@ -124,6 +134,10 @@
 
         <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
     </div>
+
+    
     
 </body>
+
+    
 </html>
