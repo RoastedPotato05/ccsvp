@@ -6,7 +6,8 @@
   // 'description': a short description of the blog post, only appears in the card view
   // 'topic': the topic or category of the blog post, the value of this property will be added dynamically to the filter dropdown on the main Blog screen
   // 'date': the date
-  // (optional) 'thumbnail': path to whatever thumbnail image, and is also used as the large image in the full blog page
+  // (optional) 'thumbnail': path to whatever thumbnail image (stored in the images folder), and is also used as the large image in the full blog page
+      // i would probably keep a consistent naming scheme to match the post id, e.g., 'blog-0.jpg' for post id '0'
 
 const posts = [
   {
@@ -30,7 +31,7 @@ const posts = [
       
 
       <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
-          This is an introductory paragraph demonstrating standard body copy. You can easily include 
+          This is an introductory paragraph demonstrating standard body text. You can easily include 
             <a href='https://example.com' class='blue-text' style='text-decoration: underline;'>in-text links</a> 
           directly within your paragraphs.
 
@@ -81,7 +82,7 @@ const posts = [
       
 
       <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
-          This is an introductory paragraph demonstrating standard body copy. You can easily include 
+          This is an introductory paragraph demonstrating standard body text. You can easily include 
             <a href='https://example.com' class='blue-text' style='text-decoration: underline;'>in-text links</a> 
           directly within your paragraphs.
 
@@ -110,6 +111,6 @@ const posts = [
         <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>      
       </div>
       
-      `
+    `
   }
 ];
