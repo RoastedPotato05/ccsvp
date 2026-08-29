@@ -125,6 +125,19 @@ body {
   flex-shrink: 0;
 }
 
+.read-more-arrow {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  border-bottom-right-radius: 1px; /* Softens the geometric harshness */
+  margin-bottom: 1px;
+  flex-shrink: 0;
+  cursor: default;
+}
+
 .page-header {
   padding: 0px 0px 0px 15px; /* Adds space between the blue border and text */
   font-size: 70px;
@@ -136,7 +149,7 @@ body {
   width: fit-content;
   display: flex;
   align-items: center;
-  height: 100px;
+  height: fit-content;
 }
 
 .page-subheader {
@@ -150,7 +163,7 @@ body {
   width: fit-content;
   display: flex;
   align-items: center;
-  height: 50px;
+  height: fit-content;
 }
 
 .menu-btn {
@@ -172,4 +185,184 @@ body {
 
 .menu-btn:hover::after {
   background-color: rgba(0, 0, 0, 0.15); 
+}
+
+
+/* Blog Controls Container */
+.blog-controls {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0px;
+}
+
+.blog-search {
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #e5e7eb;
+  outline: none;
+  border-radius: 2px;
+  flex: 1;
+  max-width: 350px;
+}
+
+/* Custom Wrapper for Select Dropdown & Flipped Arrow */
+/* Custom Wrapper for Checkbox Dropdown & Button */
+.blog-filter-wrapper {
+  position: relative;
+  width: 200px;
+}
+
+.blog-filter-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Prompt', sans-serif;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: white;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: left;
+  color: inherit;
+}
+
+.blog-filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: none;
+  flex-direction: column;
+  padding: 0; /* Reset padding so rows go edge-to-edge */
+  box-sizing: border-box;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.blog-filter-dropdown label.blog-dropdown-item {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.blog-filter-dropdown label.blog-dropdown-item input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.blog-filter-arrow {
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: translateY(-30%) rotate(45deg);
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+/* Flips arrow upside down ONLY when wrapper has the open class */
+.blog-filter-wrapper.open .blog-filter-arrow {
+  transform: translateY(20%) rotate(-135deg);
+}
+
+/* Blog Grid Container */
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 30px;
+  
+}
+
+/* Individual Blog Card */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 15px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.blog-card:hover {
+  cursor: pointer;
+  background-color: #e9e9e9;
+  transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card-content {
+  display: flex;
+  gap: 20px;
+}
+
+.blog-card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card-title {
+  font-family: 'Prompt', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  border-left: 6px solid #eb2020;
+  padding-left: 12px;
+  color: #111;
+}
+
+.blog-card-desc {
+  font-family: 'Prompt', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+  
+}
+
+.blog-card-img {
+  width: 160px;
+  height: 110px;
+  object-fit: cover;
+  background-color: #cfcfcf; /* fallback color */
+  flex-shrink: 0;
+}
+
+.blog-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid red;
+  padding-top: 15px;
+  margin-top: 10px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.blog-read-more {
+  color: #4780b5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.blog-read-more:hover {
+  text-decoration: underline;
 }

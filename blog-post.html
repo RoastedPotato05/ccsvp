@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
     <script src="components.js" defer></script>
     <script src="main.js" defer></script>
-    <script src="blog.js" defer></script>
+    <script src="blog-post.js" defer></script>
     <script src="blog-post-data.js" defer></script>
 
         
@@ -21,52 +21,32 @@
     <site-topbar></site-topbar>
     
     <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
-    <!-- <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
+    <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
         <div style="display: flex; flex: 1 1 0px;"> </div>
 
         <div style="display: flex; flex: 0 1 1600px; flex-direction: column; position: relative;">
-            <img src="images/about.jpg" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; " alt="Home Hero Image">
+            <img id="hero-image" src="" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; " alt="Home Hero Image">
             
             
         </div>
 
         <div style="display: flex; flex: 1 1 0px;"> </div>
-    </div> -->
+    </div>
 
     <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
-    <div style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
+    <div id="main-content" style="display: flex; flex-direction: row; position: relative; margin-top: -140px; z-index: 10; padding-bottom: 60px;">
         <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
 
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column;">
-            <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
+        <div style="display: flex; flex: 0 1 1200px; flex-direction: column;">
+            <div style="display: flex; width: 100%; flex-direction: column; gap: 20px;">
                 
                 
-                <div style="width: 80%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div style="width: 100%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
                         <span class="page-header">Blog</span>
                     </div>
 
-                    <!-- Custom dropdown control using .menu-btn -->
-                    <div class="blog-controls">
-                      <input type="text" id="blogSearch" class="blog-search" placeholder="Search">
-                      <div class="blog-filter-wrapper">
-                        <button type="button" id="blogFilterBtn" class="blog-filter-btn menu-btn">
-                          <span>Filter by topic</span>
-                          <div class="blog-filter-arrow"></div>
-                        </button>
-                        <div id="blogFilterDropdown" class="blog-filter-dropdown">
-                          <!-- Checkboxes injected via JS -->
-                        </div>
-                      </div>
-                    </div>
-                    
-                    
-                    <div class="blog-container">
-
-                    </div>
-
-                    
-                    
+                    <div class="blog-post-content" style="margin-top: 20px; display: flex; flex-direction: column;"></div>
                 </div>
 
                 <!-- <div style="width: 20%; height: fit-content; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
