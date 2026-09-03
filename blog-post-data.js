@@ -11,8 +11,11 @@
 
 const posts = [
   {
-    id: "0",
+    id: 0,
+    slug: "blog-template",
     hidden: false,
+    views: 0,
+    likes: 0,
     card: {
       title: "Blog Template",
       description: "A template for creating blog posts, this text is a description that only appears in this card.",
@@ -64,7 +67,10 @@ const posts = [
   },
   {
     id: "1",
+    slug: "another-blog-post",
     hidden: false,
+    views: 0,
+    likes: 0,
     card: {
       title: "Another Blog Post With A Longer Title (But No Image)",
       description: "Another template for creating blog posts, this description is different than the first one.",

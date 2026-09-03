@@ -139,3 +139,54 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+
+const container = document.querySelector('.responsive-iframe-container');
+const iframe = container.querySelector('.scalable-iframe');
+const virtualWidth = 1280;
+const virtualHeight = 853;
+
+function updateScale() {
+    // Calculate scale factor dynamically based on current container width
+    const scale = container.clientWidth / virtualWidth;
+    iframe.style.transform = `scale(${scale})`;
+    
+    // Automatically resize the container height to match the scaled iframe content
+    container.style.height = `${virtualHeight * scale}px`;
+}
+
+// Re-calculate whenever the window or parent container changes size
+const observer = new ResizeObserver(updateScale);
+observer.observe(container);
+
+// Initial run
+updateScale();
+
+
+
+function loadIframe(overlayElement) {
+    const container = overlayElement.parentElement;
+    const iframe = container.querySelector('iframe');
+    
+    // Trigger loading if not already loaded
+    if (iframe && (!iframe.getAttribute('src') || iframe.getAttribute('src') === '')) {
+        iframe.src = iframe.getAttribute('data-src');
+    }
+    
+    // Change text to show loading status and disable extra clicks
+    const textSpan = overlayElement.querySelector('.overlay-text');
+    if (textSpan) {
+        textSpan.textContent = "Loading interactive display...";
+    }
+    overlayElement.style.pointerEvents = 'none';
+    
+    // Wait 3 seconds to let the dashboard initialize, then fade out
+    setTimeout(() => {
+        overlayElement.style.transition = 'opacity 0.3s ease';
+        overlayElement.style.opacity = '0';
+        setTimeout(() => {
+            overlayElement.style.display = 'none';
+        }, 300);
+    }, 3000);
+}
