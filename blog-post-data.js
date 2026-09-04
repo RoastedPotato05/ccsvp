@@ -66,7 +66,7 @@ const posts = [
     `
   },
   {
-    id: "1",
+    id: 1,
     slug: "another-blog-post",
     hidden: false,
     views: 0,
