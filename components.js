@@ -40,11 +40,11 @@ class SiteTopbar extends HTMLElement {
                             </div>
                         </div>
 
-                        <a href="/ccsvp/people.html" id="people-dropdown-btn" class="topbar-btn menu-btn" style="height: 70px; display:flex; align-items: center;">
+                        <a href="/ccsvp/people.html" id="people-dropdown-btn" class="topbar-btn " style="height: 70px; display:flex; align-items: center;">
                             PEOPLE <span id="people-dropdown-arrow" class=""></span>
                         </a>
 
-                        <a href="/ccsvp/blog.html" id="blog-dropdown-btn" class="topbar-btn menu-btn" style="height: 70px; display:flex; align-items: center;">
+                        <a href="/ccsvp/blog.html" id="blog-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
                             BLOG <span id="blog-dropdown-arrow" class=""></span>
                         </a>
                     </div>

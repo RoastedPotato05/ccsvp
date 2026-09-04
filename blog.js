@@ -1,3 +1,5 @@
+const API_URL = 'http://localhost:3000';
+
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".blog-container");
   const filterBtn = document.getElementById("blogFilterBtn");
@@ -5,19 +7,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchInput = document.getElementById("blogSearch");
   if (!container || !filterBtn || !filterDropdown) return;
 
-  function getPostStats(postId, defaultViews, defaultLikes) {
-    const stored = localStorage.getItem(`post_stats_${postId}`);
-    if (stored) {
-      try { return JSON.parse(stored); } catch (e) {}
+  // Fetch global stats from your backend API
+  let globalStats = {};
+  try {
+    const response = await fetch(`${API_URL}/api/posts/stats`); // Replace with your actual backend endpoint
+    if (response.ok) {
+      globalStats = await response.json(); // Expected format: { "blog-template": { views: 15, likes: 4 }, ... }
     }
-    const initial = { views: defaultViews || 0, likes: defaultLikes || 0 };
-    localStorage.setItem(`post_stats_${postId}`, JSON.stringify(initial));
-    return initial;
+  } catch (err) {
+    console.error("Could not fetch global stats:", err);
   }
 
   const visiblePosts = posts.filter(p => !p.hidden);
-  
-  // Sort visible posts by integer ID in descending order (newest first)
   visiblePosts.sort((a, b) => b.id - a.id);
 
   const topics = [...new Set(visiblePosts.map(p => p.card.topic))];
@@ -64,12 +65,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       card.className = "blog-card";
       card.setAttribute("data-topic", post.card.topic);
       
-      const stats = getPostStats(post.id, post.views, post.likes);
+      // Get global stats or fallback to 0
+      const stats = globalStats[post.slug] || { views: post.views || 0, likes: post.likes || 0 };
 
-      // Navigate using the slug in the URL query string
       card.addEventListener("click", () => {
-        stats.views += 1;
-        localStorage.setItem(`post_stats_${post.id}`, JSON.stringify(stats));
         window.location.href = `blog-post.html?${post.slug}`;
       });
 
