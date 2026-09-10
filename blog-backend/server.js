@@ -7,10 +7,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// 1. Serve static frontend files from the parent directory at the root level
+// 1. Serve static files with the /ccsvp route prefix (matches your href links)
+app.use('/ccsvp', express.static(path.join(__dirname, '../')));
+
+// 2. Also serve static files at root level as a fallback
 app.use(express.static(path.join(__dirname, '../')));
 
-// Fallback to send index.html when accessing root URL /
+// 3. Redirect root domain hits (https://ccsvp.onrender.com/) to index.html
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../', 'index.html'));
 });
