@@ -1,5 +1,3 @@
-const API_URL = 'http://localhost:3000';
-
 document.addEventListener("DOMContentLoaded", async () => {
   const container = document.querySelector(".blog-container");
   const filterBtn = document.getElementById("blogFilterBtn");
@@ -10,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch global stats from your backend API
   let globalStats = {};
   try {
-    const response = await fetch(`${API_URL}/api/posts/stats`); // Replace with your actual backend endpoint
+    const response = await fetch(`/api/posts/stats`); // Replace with your actual backend endpoint
     if (response.ok) {
       globalStats = await response.json(); // Expected format: { "blog-template": { views: 15, likes: 4 }, ... }
     }
