@@ -7,8 +7,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Serve static frontend files from the parent directory
-app.use('/ccsvp', express.static(path.join(__dirname, '../')));
+// 1. Serve static frontend files from the parent directory at the root level
+app.use(express.static(path.join(__dirname, '../')));
+
+// Fallback to send index.html when accessing root URL /
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'index.html'));
+});
 
 // Get all stats
 app.get('/api/posts/stats', (req, res) => {
@@ -81,7 +86,8 @@ app.post('/api/posts/:slug/unlike', (req, res) => {
   );
 });
 
-const PORT = 3000;
+// 2. Dynamic Port Assignment for Render
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}/ccsvp/`);
+  console.log(`Server running on port ${PORT}`);
 });
