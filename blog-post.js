@@ -1,5 +1,3 @@
-const API_URL = 'http://localhost:3000';
-
 document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const slug = Array.from(params.keys())[0] || window.location.search.substring(1);
@@ -21,7 +19,7 @@ let likes = currentPost.likes || 0;
 
 try {
   // Always increment on page load
-  const viewRes = await fetch(`${API_URL}/api/posts/${slug}/view`, { method: 'POST' });
+  const viewRes = await fetch(`/api/posts/${slug}/view`, { method: 'POST' });
   if (viewRes.ok) {
     const data = await viewRes.json();
     views = data.views;
@@ -69,7 +67,7 @@ try {
       const endpoint = hasLiked ? 'unlike' : 'like';
 
       try {
-        const res = await fetch(`${API_URL}/api/posts/${slug}/${endpoint}`, { method: 'POST' });
+        const res = await fetch(`/api/posts/${slug}/${endpoint}`, { method: 'POST' });
         if (res.ok) {
           const data = await res.json();
           likes = data.likes;
