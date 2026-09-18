@@ -368,42 +368,175 @@ body {
   text-decoration: underline;
 }
 /* ===================================================
-   DASHBOARD CARD SWITCHER COMPONENT
+   DASHBOARD CARD SWITCHER COMPONENT (SLIDING CAROUSEL)
 =================================================== */
 .card-switcher-container {
   width: 100%;
-  max-width: 850px;
   margin: 30px 0;
   display: flex;
   flex-direction: column;
 }
 
-/* Cards Wrapper */
-.dashboard-cards-wrapper {
-  position: relative;
+/* Viewport: clips cards extending past right edge */
+.dashboard-cards-viewport {
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px;
+  /* border: 2px solid red; */
+  box-sizing: border-box;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.08);
+  background-color: rgb(235, 235, 235);
 }
 
-/* Individual Card (Hidden by default, shown when .active) */
+/* Moving flex track (keeps width: 100px so flex parent column is not pushed out) */
+.dashboard-cards-track {
+  display: flex;
+  position: relative;
+  left: 0;
+  width: 100px;
+  flex-direction: row;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Individual Card (wider than tall, all rendered inline) */
 .dashboard-card {
-  display: none;
-  opacity: 0;
+  flex: 0 0 460px;
+  width: 460px;
   background-color: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-top: 4px solid #4780b5;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  padding: 25px;
+  padding: 18px;
   box-sizing: border-box;
-  transition: opacity 0.25s ease-in-out;
-}
-
-.dashboard-card.active {
-  display: block;
-  opacity: 1;
 }
 
 .dashboard-card-header {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+}
+
+/* Scaled dashboard preview container ONLY while sitting in the card */
+.dashboard-card .iframe-container:not(.popped-out) {
+  width: 100% !important;
+  height: 270px !important;
+  margin: 8px 0 0 0 !important;
+  position: relative;
+  overflow: hidden;
+  background-color: #111;
+}
+
+/* Default thumbnail scale inside card */
+.dashboard-card .iframe-container:not(.popped-out) iframe {
+  width: 1280px;
+  height: 853px;
+  transform: scale(0.33);
+  transform-origin: 0 0;
+  border: none;
+  pointer-events: auto;
+}
+
+/* Dark background overlay behind large popup view */
+.dashboard-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 99990;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+  pointer-events: auto;
+}
+
+.dashboard-modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Popped-out View: dimensions and scale are dynamically set by JS to match 1280x853 */
+.iframe-container.popped-out {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000000 !important;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.85) !important;
+  border-radius: 4px;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+}
+
+.iframe-container.popped-out iframe {
+  pointer-events: auto !important;
+}
+
+/* Expand / Popout Button on bottom right */
+.dashboard-popout-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 25;
+  background-color: #eb2020;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Prompt', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+/* .dashboard-popout-btn:hover {
+  background-color: #eb2020;
+
+} */
+
+.dashboard-popout-btn:active {
+  transform: scale(0.95);
+}
+
+/* Hide expand button while in popup mode */
+.iframe-container.popped-out .dashboard-popout-btn {
+  display: none !important;
+}
+
+/* Close Button on top right of popup view */
+.dashboard-close-btn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 30;
+  background-color: #eb2020;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.15s ease;
+}
+
+/* .dashboard-close-btn:hover {
+  background-color: #8b2a2a;
+} */
+
+.iframe-container.popped-out .dashboard-close-btn {
+  display: flex !important;
 }
 
 /* Bottom Centered Controls: Arrow - Dots - Arrow */
@@ -421,7 +554,7 @@ body {
   height: 38px;
   background-color: #244d6d;
   border: none;
-  border-radius: 50%; /* Circle shape works nicely next to dots */
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;

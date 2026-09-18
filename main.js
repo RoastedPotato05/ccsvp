@@ -162,71 +162,263 @@ if (container) {
 }
 
 
+let activePoppedContainer = null;
+let activeStackingParent = null;
+
+function updatePoppedScale(container) {
+    const iframe = container.querySelector('iframe');
+    if (!iframe) return;
+
+    const virtualWidth = 1280;
+    const virtualHeight = 853;
+
+    // Calculate maximum available space (92vw x 88vh)
+    const maxWidth = window.innerWidth * 0.92;
+    const maxHeight = window.innerHeight * 0.88;
+
+    // Scale to fit viewport up to 1.0
+    const scale = Math.min(maxWidth / virtualWidth, maxHeight / virtualHeight, 1.0);
+
+    // Set width and height with !important to completely override thumbnail dimensions
+    container.style.setProperty('width', `${virtualWidth * scale}px`, 'important');
+    container.style.setProperty('height', `${virtualHeight * scale}px`, 'important');
+
+    // Apply scale to iframe
+    iframe.style.setProperty('transform', `scale(${scale})`, 'important');
+}
+
+function openDashboardPopup(container) {
+    let backdrop = document.getElementById('dashboard-modal-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.id = 'dashboard-modal-backdrop';
+        backdrop.className = 'dashboard-modal-backdrop';
+        document.body.appendChild(backdrop);
+        backdrop.addEventListener('click', closeDashboardPopup);
+    }
+
+    // Temporarily elevate the layout container so its z-index: 10 stacking context doesn't trap the modal behind the backdrop
+    activeStackingParent = container.closest('[style*="z-index: 10"]') || container.closest('[style*="z-index"]');
+    if (activeStackingParent) {
+        activeStackingParent.dataset.origZ = activeStackingParent.style.zIndex;
+        activeStackingParent.style.zIndex = 'auto';
+    }
+
+    activePoppedContainer = container;
+    container.classList.add('popped-out');
+    backdrop.classList.add('active');
+    updatePoppedScale(container);
+}
+
+function closeDashboardPopup() {
+    if (!activePoppedContainer) return;
+    const backdrop = document.getElementById('dashboard-modal-backdrop');
+    if (backdrop) backdrop.classList.remove('active');
+
+    const iframe = activePoppedContainer.querySelector('iframe');
+    activePoppedContainer.classList.remove('popped-out');
+
+    // Reset container size and iframe scale back to card thumbnail
+    activePoppedContainer.style.width = '';
+    activePoppedContainer.style.height = '';
+    if (iframe) iframe.style.removeProperty('transform');
+
+    // Restore parent z-index
+    if (activeStackingParent) {
+        activeStackingParent.style.zIndex = activeStackingParent.dataset.origZ || '10';
+        activeStackingParent = null;
+    }
+
+    activePoppedContainer = null;
+}
+
+window.addEventListener('resize', () => {
+    if (activePoppedContainer) updatePoppedScale(activePoppedContainer);
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDashboardPopup();
+});
 
 function loadIframe(overlayElement) {
     const container = overlayElement.parentElement;
     const iframe = container.querySelector('iframe');
-    
+
     // Trigger loading if not already loaded
     if (iframe && (!iframe.getAttribute('src') || iframe.getAttribute('src') === '')) {
         iframe.src = iframe.getAttribute('data-src');
     }
-    
-    // Change text to show loading status and disable extra clicks
+
+    // Change text to show loading status
     const textSpan = overlayElement.querySelector('.overlay-text');
     if (textSpan) {
         textSpan.textContent = "Loading interactive display...";
     }
     overlayElement.style.pointerEvents = 'none';
-    
-    // Wait 3 seconds to let the dashboard initialize, then fade out
+
+    // Wait 3 seconds, then reveal iframe and add expand controls
     setTimeout(() => {
         overlayElement.style.transition = 'opacity 0.3s ease';
         overlayElement.style.opacity = '0';
         setTimeout(() => {
             overlayElement.style.display = 'none';
+
+            // Add popout button if not already present
+            if (!container.querySelector('.dashboard-popout-btn')) {
+                const popBtn = document.createElement('button');
+                popBtn.type = 'button';
+                popBtn.className = 'dashboard-popout-btn';
+                popBtn.classList.add('menu-btn');
+                popBtn.title = 'Expand to popup view';
+                popBtn.innerHTML = `
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <polyline points="9 21 3 21 3 15"></polyline>
+                        <line x1="21" y1="3" x2="14" y2="10"></line>
+                        <line x1="3" y1="21" x2="10" y2="14"></line>
+                    </svg>
+                    <span>Expand</span>
+                `;
+                popBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openDashboardPopup(container);
+                });
+                container.appendChild(popBtn);
+            }
+
+            // Add close button for popup mode if not already present
+            if (!container.querySelector('.dashboard-close-btn')) {
+                const closeBtn = document.createElement('button');
+                closeBtn.type = 'button';
+                closeBtn.className = 'dashboard-close-btn';
+                closeBtn.classList.add('menu-btn');
+                closeBtn.title = 'Close popup view';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeDashboardPopup();
+                });
+                container.appendChild(closeBtn);
+            }
         }, 300);
     }, 3000);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll('.dashboard-card');
+    const track = document.getElementById('dashboard-track');
     const prevBtn = document.getElementById('prev-card-btn');
     const nextBtn = document.getElementById('next-card-btn');
     const dotsContainer = document.getElementById('card-dots');
+    const switcherContainer = document.querySelector('.card-switcher-container');
 
-    if (!cards.length || !prevBtn || !nextBtn || !dotsContainer) return;
+    if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
 
-    let currentIndex = 0;
-    const total = cards.length;
+    const originalCards = Array.from(track.querySelectorAll('.dashboard-card'));
+    const totalReal = originalCards.length;
+    if (totalReal === 0) return;
 
-    // Automatically generate one dot per card
+    // Create 1 indicator dot per original card
     dotsContainer.innerHTML = '';
-    cards.forEach((_, idx) => {
+    originalCards.forEach((_, idx) => {
         const dot = document.createElement('span');
         dot.className = `card-dot ${idx === 0 ? 'active' : ''}`;
-        dot.setAttribute('title', `Go to slide ${idx + 1}`);
-        dot.addEventListener('click', () => showCard(idx));
+        dot.setAttribute('title', `Go to dashboard ${idx + 1}`);
+        dot.addEventListener('click', () => {
+            stopAutoplay();
+            goToIndex(idx + 1);
+        });
         dotsContainer.appendChild(dot);
     });
 
-    function showCard(index) {
-        // Loop back around at ends
-        if (index < 0) index = total - 1;
-        if (index >= total) index = 0;
+    // Infinite loop: clone last card to start, and first 3 cards to end
+    const cloneLast = originalCards[totalReal - 1].cloneNode(true);
+    track.insertBefore(cloneLast, originalCards[0]);
 
-        // Switch active card
-        cards[currentIndex].classList.remove('active');
-        cards[index].classList.add('active');
+    const clonesToAppend = originalCards.slice(0, Math.min(3, totalReal));
+    clonesToAppend.forEach(card => {
+        track.appendChild(card.cloneNode(true));
+    });
 
-        // Switch active blue dot
-        const dots = dotsContainer.querySelectorAll('.card-dot');
-        dots[currentIndex]?.classList.remove('active');
-        dots[index]?.classList.add('active');
+    const allCards = track.querySelectorAll('.dashboard-card');
+    let currentIndex = 1;
+    let isTransitioning = false;
 
-        currentIndex = index;
+    function getStepWidth() {
+        const cardWidth = allCards[0].offsetWidth;
+        const style = window.getComputedStyle(track);
+        const gap = parseFloat(style.gap) || 20;
+        return cardWidth + gap;
     }
 
-    prevBtn.addEventListener('click', () => showCard(currentIndex - 1));
-    nextBtn.addEventListener('click', () => showCard(currentIndex + 1));
+    function updatePosition(animate = true) {
+        track.style.transition = animate ? 'left 0.5s ease-in-out' : 'none';
+        const step = getStepWidth();
+        track.style.left = `-${currentIndex * step}px`;
+        updateDots();
+    }
+
+    function updateDots() {
+        const dots = dotsContainer.querySelectorAll('.card-dot');
+        const activeDotIdx = (currentIndex - 1 + totalReal) % totalReal;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === activeDotIdx);
+        });
+    }
+
+    function goToIndex(index) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex = index;
+        updatePosition(true);
+    }
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        goToIndex(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        goToIndex(currentIndex - 1);
+    }
+
+    track.addEventListener('transitionend', (e) => {
+        if (e.propertyName !== 'left') return;
+        isTransitioning = false;
+        if (currentIndex > totalReal) {
+            currentIndex = 1;
+            updatePosition(false);
+        } else if (currentIndex < 1) {
+            currentIndex = totalReal;
+            updatePosition(false);
+        }
+    });
+
+    // Autoplay every 4 seconds
+    let autoplayTimer = setInterval(nextSlide, 4000);
+
+    function stopAutoplay() {
+        if (autoplayTimer) {
+            clearInterval(autoplayTimer);
+            autoplayTimer = null;
+        }
+    }
+
+    prevBtn.addEventListener('click', () => {
+        stopAutoplay();
+        prevSlide();
+    });
+    nextBtn.addEventListener('click', () => {
+        stopAutoplay();
+        nextSlide();
+    });
+    if (switcherContainer) {
+        switcherContainer.addEventListener('click', stopAutoplay);
+    }
+
+    window.addEventListener('resize', () => {
+        updatePosition(false);
+    });
+
+    updatePosition(false);
 });
