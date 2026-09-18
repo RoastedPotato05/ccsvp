@@ -367,3 +367,119 @@ body {
 .blog-read-more:hover {
   text-decoration: underline;
 }
+/* ===================================================
+   DASHBOARD CARD SWITCHER COMPONENT
+=================================================== */
+.card-switcher-container {
+  width: 100%;
+  max-width: 850px;
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cards Wrapper */
+.dashboard-cards-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Individual Card (Hidden by default, shown when .active) */
+.dashboard-card {
+  display: none;
+  opacity: 0;
+  background-color: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 4px solid #4780b5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  box-sizing: border-box;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.dashboard-card.active {
+  display: block;
+  opacity: 1;
+}
+
+.dashboard-card-header {
+  margin-bottom: 15px;
+}
+
+/* Bottom Centered Controls: Arrow - Dots - Arrow */
+.card-switcher-bottom-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Nav Button Styling */
+.card-nav-btn {
+  width: 38px;
+  height: 38px;
+  background-color: #244d6d;
+  border: none;
+  border-radius: 50%; /* Circle shape works nicely next to dots */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.card-nav-btn:hover {
+  background-color: #4780b5;
+}
+
+.card-nav-btn:active {
+  transform: scale(0.92);
+}
+
+/* Arrows */
+.nav-arrow {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-top: 2.5px solid white;
+  border-right: 2.5px solid white;
+}
+
+.nav-arrow.prev {
+  transform: rotate(-135deg);
+  margin-left: 3px;
+}
+
+.nav-arrow.next {
+  transform: rotate(45deg);
+  margin-right: 3px;
+}
+
+/* Pagination Dots */
+.card-dots-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 6px;
+}
+
+/* Default Gray Dot */
+.card-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+.card-dot:hover {
+  background-color: #999;
+}
+
+/* Active Blue Dot */
+.card-dot.active {
+  background-color: #4780b5;
+  transform: scale(1.3);
+}

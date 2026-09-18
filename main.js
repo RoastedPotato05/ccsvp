@@ -143,25 +143,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const container = document.querySelector('.responsive-iframe-container');
-const iframe = container.querySelector('.scalable-iframe');
-const virtualWidth = 1280;
-const virtualHeight = 853;
 
-function updateScale() {
-    // Calculate scale factor dynamically based on current container width
-    const scale = container.clientWidth / virtualWidth;
-    iframe.style.transform = `scale(${scale})`;
-    
-    // Automatically resize the container height to match the scaled iframe content
-    container.style.height = `${virtualHeight * scale}px`;
+if (container) {
+    const iframe = container.querySelector('.scalable-iframe');
+    const virtualWidth = 1280;
+    const virtualHeight = 853;
+
+    function updateScale() {
+        if (!iframe) return;
+        const scale = container.clientWidth / virtualWidth;
+        iframe.style.transform = `scale(${scale})`;
+        container.style.height = `${virtualHeight * scale}px`;
+    }
+
+    const observer = new ResizeObserver(updateScale);
+    observer.observe(container);
+    updateScale();
 }
-
-// Re-calculate whenever the window or parent container changes size
-const observer = new ResizeObserver(updateScale);
-observer.observe(container);
-
-// Initial run
-updateScale();
 
 
 
@@ -190,3 +188,45 @@ function loadIframe(overlayElement) {
         }, 300);
     }, 3000);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.dashboard-card');
+    const prevBtn = document.getElementById('prev-card-btn');
+    const nextBtn = document.getElementById('next-card-btn');
+    const dotsContainer = document.getElementById('card-dots');
+
+    if (!cards.length || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    let currentIndex = 0;
+    const total = cards.length;
+
+    // Automatically generate one dot per card
+    dotsContainer.innerHTML = '';
+    cards.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = `card-dot ${idx === 0 ? 'active' : ''}`;
+        dot.setAttribute('title', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => showCard(idx));
+        dotsContainer.appendChild(dot);
+    });
+
+    function showCard(index) {
+        // Loop back around at ends
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+
+        // Switch active card
+        cards[currentIndex].classList.remove('active');
+        cards[index].classList.add('active');
+
+        // Switch active blue dot
+        const dots = dotsContainer.querySelectorAll('.card-dot');
+        dots[currentIndex]?.classList.remove('active');
+        dots[index]?.classList.add('active');
+
+        currentIndex = index;
+    }
+
+    prevBtn.addEventListener('click', () => showCard(currentIndex - 1));
+    nextBtn.addEventListener('click', () => showCard(currentIndex + 1));
+});
