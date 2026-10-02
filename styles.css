@@ -32,7 +32,6 @@ body {
   object-fit: cover;
   display: block;
   object-position: center 80%;
-  filter: brightness(77%) contrast(145%) saturate(165%);
 }
 
 .home-main-wrapper {
@@ -75,27 +74,24 @@ body {
 
   .full-width-mobile {
     width: 100% !important;
-    padding: 16px !important; /* Padding inside the white card */
+    padding: 16px !important;
   }
 
   .mobile-page-wrapper {
     margin-top: 15px !important;
-    padding: 0 10px 60px 10px !important; /* Exactly 4px on left and right */
+    padding: 0 10px 60px 10px !important;
   }
 
-  /* Clear the inline 30px side padding from the middle container */
   .mobile-page-wrapper > div {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
 
-  /* Hide empty gutter divs on mobile so the card can take full width */
   .mobile-page-wrapper > div:first-child,
   .mobile-page-wrapper > div:last-child {
     display: none !important;
   }
 
-  /* Also apply the 4px gutters to the home page */
   .home-main-wrapper {
     padding: 10px 10px 60px 10px !important;
   }
@@ -107,17 +103,21 @@ body {
 
 /* Desktop view (900px and wider) */
 @media (min-width: 900px) {
+  .hide-on-desktop {
+    display: none !important;
+  }
+
   .hero-img {
     height: 660px;
   }
 
   .home-main-wrapper {
-    margin-top: -140px; /* Pull up over hero on desktop */
+    margin-top: -140px;
     padding: 0 0 60px 0;
   }
 
   .home-columns {
-    flex-direction: row; /* Side-by-side on desktop */
+    flex-direction: row;
   }
 
   .home-left-col {
@@ -129,12 +129,6 @@ body {
     width: 40%;
   }
 }
-
-
-
-
-
-
 
 .debug-border {
   border: 3px solid red;
@@ -189,7 +183,6 @@ body {
   background-color: #b3d2ea
 }
 
-
 .michroma-regular {
   font-family: "Michroma", sans-serif;
   font-weight: 400;
@@ -207,8 +200,6 @@ body {
   font-weight: 400;
   font-style: normal;
 }
-
-
 
 .topbar-btn {
   border: none;
@@ -236,7 +227,7 @@ body {
   border-right: 3px solid currentColor;
   border-bottom: 3px solid currentColor;
   transform: rotate(45deg);
-  border-bottom-right-radius: 1px; /* Softens the geometric harshness */
+  border-bottom-right-radius: 1px;
   margin-left: 10px;
   margin-bottom: 6px;
   flex-shrink: 0;
@@ -249,7 +240,7 @@ body {
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
   transform: rotate(-45deg);
-  border-bottom-right-radius: 1px; /* Softens the geometric harshness */
+  border-bottom-right-radius: 1px;
   margin-bottom: 1px;
   flex-shrink: 0;
   cursor: default;
@@ -257,7 +248,7 @@ body {
 
 .page-header {
   padding: 0px 0px 0px 12px;
-  font-size: 36px; /* Scales down on mobile so it doesn't wrap off-screen */
+  font-size: 36px;
   font-family: 'Prompt', sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
@@ -361,11 +352,11 @@ body {
     width: 100% !important;
     box-shadow: none !important;
     background-color: #6d1f1f !important;
-    display: none !important; /* Takes 0 height until clicked */
+    display: none !important;
   }
 
   .dropdown-menu.menu-visible {
-    display: flex !important; /* Expands when tapped */
+    display: flex !important;
   }
 }
 
@@ -405,7 +396,6 @@ body {
   background-color: rgba(0, 0, 0, 0.15); 
 }
 
-
 /* Blog Controls Container */
 .blog-controls {
   display: flex;
@@ -425,8 +415,6 @@ body {
   max-width: 350px;
 }
 
-/* Custom Wrapper for Select Dropdown & Flipped Arrow */
-/* Custom Wrapper for Checkbox Dropdown & Button */
 .blog-filter-wrapper {
   position: relative;
   width: 200px;
@@ -461,7 +449,7 @@ body {
   z-index: 100;
   display: none;
   flex-direction: column;
-  padding: 0; /* Reset padding so rows go edge-to-edge */
+  padding: 0;
   box-sizing: border-box;
   max-height: 200px;
   overflow-y: auto;
@@ -493,20 +481,19 @@ body {
   flex-shrink: 0;
 }
 
-/* Flips arrow upside down ONLY when wrapper has the open class */
 .blog-filter-wrapper.open .blog-filter-arrow {
   transform: translateY(20%) rotate(-135deg);
 }
 
 /* Blog Grid Container */
+/* Update the default minmax or use 100% on smaller screens */
 .blog-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  gap: 30px;
-  
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 450px), 1fr));
+  gap: 20px;
 }
 
-/* Individual Blog Card */
+/* Also ensure search & filter inputs stack cleanly on mobile */
 .blog-card {
   display: flex;
   flex-direction: column;
@@ -552,15 +539,37 @@ body {
   font-size: 15px;
   color: #444;
   line-height: 1.5;
-  
 }
 
 .blog-card-img {
   width: 160px;
   height: 110px;
   object-fit: cover;
-  background-color: #cfcfcf; /* fallback color */
+  background-color: #cfcfcf;
   flex-shrink: 0;
+}
+
+/* Also ensure search & filter inputs stack cleanly on mobile */
+@media (max-width: 900px) {
+  .blog-controls {
+    flex-direction: column;
+  }
+
+  .blog-search,
+  .blog-filter-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .blog-card-content {
+    flex-direction: column-reverse;
+  }
+
+  .blog-card-img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 .blog-card-footer {
@@ -584,6 +593,46 @@ body {
 .blog-read-more:hover {
   text-decoration: underline;
 }
+
+/* Blog Post Page Layout */
+.blog-post-main-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  z-index: 10;
+  margin-top: 0px;
+  padding: 16px 10px 60px 10px;
+}
+
+/* Hide gutters on mobile so content uses the full screen width */
+@media (max-width: 900px) {
+  .blog-post-main-wrapper > div:first-child,
+  .blog-post-main-wrapper > div:last-child {
+    display: none !important;
+  }
+}
+
+/* Pull up over hero on desktop */
+@media (min-width: 900px) {
+  .blog-post-main-wrapper {
+    margin-top: -140px;
+    padding: 0 0 60px 0;
+  }
+  .blog-post-main-wrapper.no-hero {
+    margin-top: 60px !important;
+  }
+}
+
+/* Prevent embedded videos or large images from blowing out mobile screens */
+.blog-post-content iframe {
+  max-width: 100%;
+}
+
+.blog-post-content img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* ===================================================
    DASHBOARD CARD SWITCHER COMPONENT (SLIDING CAROUSEL)
 =================================================== */
@@ -594,19 +643,16 @@ body {
   flex-direction: column;
 }
 
-/* Viewport: clips cards extending past right edge */
 .dashboard-cards-viewport {
   width: 100%;
   overflow: hidden;
   position: relative;
   padding: 20px;
-  /* border: 2px solid red; */
   box-sizing: border-box;
   box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.08);
   background-color: rgb(235, 235, 235);
 }
 
-/* Moving flex track (keeps width: 100px so flex parent column is not pushed out) */
 .dashboard-cards-track {
   display: flex;
   position: relative;
@@ -617,7 +663,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Individual Card (wider than tall, all rendered inline) */
 .dashboard-card {
   flex: 0 0 460px;
   width: 460px;
@@ -635,7 +680,7 @@ body {
 
 /* Scaled dashboard preview container ONLY while sitting in the card */
 .dashboard-card .iframe-container:not(.popped-out) {
-  width: 100% !important;
+  width: auto !important;
   height: 270px !important;
   margin: 8px 0 0 0 !important;
   position: relative;
@@ -643,15 +688,76 @@ body {
   background-color: #111;
 }
 
-/* Default thumbnail scale inside card */
 .dashboard-card .iframe-container:not(.popped-out) iframe {
   width: 1280px;
-  height: 853px;
+  height: auto;
   transform: scale(0.33);
   transform-origin: 0 0;
   border: none;
   pointer-events: auto;
 }
+
+@media (max-width: 900px) {
+  .dashboard-cards-viewport {
+    padding: 10px;
+  }
+
+  .dashboard-cards-track {
+    /* TWEAK THIS SINGLE NUMBER FOR MOBILE:
+       0.60 = ~215px tall
+       0.65 = ~235px tall
+       0.70 = ~255px tall */
+    --m-scale: 0.60;
+    gap: 12px;
+  }
+
+  /* Card width flexes to match the scale */
+  .dashboard-card {
+    flex: 0 0 calc(460px * var(--m-scale));
+    width: calc(460px * var(--m-scale));
+    padding: calc(18px * var(--m-scale));
+    overflow: hidden;
+  }
+
+  .dashboard-card-header {
+    margin-bottom: calc(14px * var(--m-scale)) !important;
+  }
+
+  .dashboard-card-header .page-subheader {
+    font-size: 15px;
+    line-height: 1.2;
+    border-left-width: 4px;
+    padding-left: 6px;
+  }
+
+  .dashboard-card-body p {
+    font-size: 11px !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Preview picture height scales proportionally */
+  .dashboard-card .iframe-container:not(.popped-out) {
+    height: calc(270px * var(--m-scale)) !important;
+    margin: 4px 0 0 0 !important;
+  }
+
+  /* Iframe scales down proportionally so it stays inside the picture container */
+  .dashboard-card .iframe-container:not(.popped-out) iframe {
+    transform: scale(calc(0.33 * var(--m-scale)));
+  }
+
+  .iframe-overlay span:first-child {
+    font-size: 13px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .iframe-overlay .overlay-text {
+    font-size: 11px !important;
+    padding: 3px 8px !important;
+  }
+}
+
 
 /* Dark background overlay behind large popup view */
 .dashboard-modal-backdrop {
@@ -673,7 +779,7 @@ body {
   visibility: visible;
 }
 
-/* Popped-out View: dimensions and scale are dynamically set by JS to match 1280x853 */
+/* Popped-out View: dynamically sized, overrides any inline max-width/max-height constraints */
 .iframe-container.popped-out {
   position: fixed !important;
   top: 50% !important;
@@ -684,10 +790,13 @@ body {
   border-radius: 4px;
   overflow: hidden !important;
   pointer-events: auto !important;
+  max-width: none !important;
+  max-height: none !important;
 }
 
 .iframe-container.popped-out iframe {
   pointer-events: auto !important;
+  transform-origin: 0 0 !important;
 }
 
 /* Expand / Popout Button on bottom right */
@@ -712,16 +821,10 @@ body {
   transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
-/* .dashboard-popout-btn:hover {
-  background-color: #eb2020;
-
-} */
-
 .dashboard-popout-btn:active {
   transform: scale(0.95);
 }
 
-/* Hide expand button while in popup mode */
 .iframe-container.popped-out .dashboard-popout-btn {
   display: none !important;
 }
@@ -748,10 +851,6 @@ body {
   transition: background-color 0.15s ease;
 }
 
-/* .dashboard-close-btn:hover {
-  background-color: #8b2a2a;
-} */
-
 .iframe-container.popped-out .dashboard-close-btn {
   display: flex !important;
 }
@@ -765,7 +864,6 @@ body {
   margin-top: 20px;
 }
 
-/* Nav Button Styling */
 .card-nav-btn {
   width: 38px;
   height: 38px;
@@ -787,7 +885,6 @@ body {
   transform: scale(0.92);
 }
 
-/* Arrows */
 .nav-arrow {
   display: inline-block;
   width: 9px;
@@ -806,7 +903,6 @@ body {
   margin-right: 3px;
 }
 
-/* Pagination Dots */
 .card-dots-container {
   display: flex;
   align-items: center;
@@ -814,7 +910,6 @@ body {
   padding: 0 6px;
 }
 
-/* Default Gray Dot */
 .card-dot {
   width: 11px;
   height: 11px;
@@ -828,8 +923,22 @@ body {
   background-color: #999;
 }
 
-/* Active Blue Dot */
 .card-dot.active {
   background-color: #4780b5;
   transform: scale(1.3);
+}
+
+/* Responsive media for blog posts */
+.blog-post-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.blog-post-content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* Keeps standard 16:9 video ratio at any width */
+  height: auto;
+  border: none;
+  display: block;
 }

@@ -33,7 +33,7 @@
                     <br><br>
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-bottom: 20px;">
-                        <span class="page-subheader" style="">Crime Dashboards</span>
+                        <span class="page-subheader">Crime Dashboards</span>
                     </div>
 
                     <div class="card-switcher-container">
@@ -45,10 +45,11 @@
                                 <!-- CARD 1: Illinois NIBRS -->
                                 <div class="dashboard-card">
                                     <div class="dashboard-card-header" style="margin-bottom: 20px;">
-                                        <span class="page-subheader ignore">Illinois NIBRS-Crime Portal</span>
+                                        <span class="page-subheader ignore"><a href="https://ccsvp.shinyapps.io/ISPspatial/" target="_blank">Illinois NIBRS-Crime Portal</a></span>
                                     </div>
                                     <div class="dashboard-card-body">
-                                        <div class="iframe-container" style="position: relative; overflow: hidden;">
+                                        <!-- Desktop Display: Interactive Iframe -->
+                                        <div class="iframe-container hide-on-mobile" style="position: relative; overflow: hidden;">
                                             <div class="iframe-overlay" onclick="loadIframe(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/illinois-nibrs.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; cursor: pointer; color: white;">
                                                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                                     <span class="prompt-regular" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Illinois NIBRS-Crime Portal</span>
@@ -57,19 +58,25 @@
                                             </div>
                                             <iframe data-src="https://ccsvp.shinyapps.io/ISPspatial/" width="1280px" height="853px" style="transform-origin: 0 0; border: none;"></iframe>
                                         </div>
+
+                                        <!-- Mobile Display: Clickable Picture linked to Dashboard -->
+                                        <a href="https://ccsvp.shinyapps.io/ISPspatial/" target="_blank" class="iframe-container hide-on-desktop" style="display: block; position: relative; overflow: hidden; text-decoration: none;">
+                                            <img src="../images/illinois-nibrs.png" alt="Illinois NIBRS-Crime Portal" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                        </a>
                                     </div>
                                 </div>
 
                                 <!-- CARD 2: Collinsville Calls for Service -->
                                 <div class="dashboard-card">
                                     <div class="dashboard-card-header" style="margin-bottom: 20px;">
-                                        <span class="page-subheader ignore">Collinsville Calls for Service</span>
+                                        <span class="page-subheader ignore"><a href="https://ccsvp.maps.arcgis.com/apps/dashboards/88824cc2cc41455f8b5243490eca1133#" target="_blank">Collinsville Calls for Service</a></span>
                                     </div>
                                     <div class="dashboard-card-body">
                                         <p class="prompt-regular" style="font-size: 14px; line-height: 1.4; color: #555; margin-bottom: 8px;">
                                             Read more about this dashboard <a href="https://www.collinsvilleil.org/departments/police-department/calls-for-service" class="blue-text" style="text-decoration: underline;">here</a>.
                                         </p>
-                                        <div class="iframe-container" style="position: relative; overflow: hidden;">
+                                        <!-- Desktop Display: Interactive Iframe -->
+                                        <div class="iframe-container hide-on-mobile" style="position: relative; overflow: hidden;">
                                             <div class="iframe-overlay" onclick="loadIframe(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/collinsville-calls.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; cursor: pointer; color: white;">
                                                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                                     <span class="prompt-regular" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Collinsville Calls for Service</span>
@@ -78,16 +85,22 @@
                                             </div>
                                             <iframe data-src="https://ccsvp.maps.arcgis.com/apps/dashboards/88824cc2cc41455f8b5243490eca1133#" width="1280px" height="853px" style="transform-origin: 0 0; border: none;"></iframe>
                                         </div>
+
+                                        <!-- Mobile Display: Clickable Picture linked to Dashboard -->
+                                        <a href="https://ccsvp.maps.arcgis.com/apps/dashboards/88824cc2cc41455f8b5243490eca1133#" target="_blank" class="iframe-container hide-on-desktop" style="display: block; position: relative; overflow: hidden; text-decoration: none;">
+                                            <img src="../images/collinsville-calls.png" alt="Collinsville Calls for Service" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                        </a>
                                     </div>
                                 </div>
 
                                 <!-- CARD 3: Fairview Heights NIBRS -->
                                 <div class="dashboard-card">
                                     <div class="dashboard-card-header" style="margin-bottom: 20px;">
-                                        <span class="page-subheader ignore">Fairview Heights NIBRS</span>
+                                        <span class="page-subheader ignore"><a href="https://ccsvp.shinyapps.io/FHPDpublicdash/" target="_blank">Fairview Heights NIBRS</a></span>
                                     </div>
                                     <div class="dashboard-card-body">
-                                        <div class="iframe-container" style="position: relative; overflow: hidden;">
+                                        <!-- Desktop Display: Interactive Iframe -->
+                                        <div class="iframe-container hide-on-mobile" style="position: relative; overflow: hidden;">
                                             <div class="iframe-overlay" onclick="loadIframe(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/fairview-nibrs.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; cursor: pointer; color: white;">
                                                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                                     <span class="prompt-regular" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Fairview Heights NIBRS</span>
@@ -96,16 +109,22 @@
                                             </div>
                                             <iframe data-src="https://ccsvp.shinyapps.io/FHPDpublicdash/" width="1280px" height="853px" style="transform-origin: 0 0; border: none;"></iframe>
                                         </div>
+
+                                        <!-- Mobile Display: Clickable Picture linked to Dashboard -->
+                                        <a href="https://ccsvp.shinyapps.io/FHPDpublicdash/" target="_blank" class="iframe-container hide-on-desktop" style="display: block; position: relative; overflow: hidden; text-decoration: none;">
+                                            <img src="../images/fairview-nibrs.png" alt="Fairview Heights NIBRS" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                        </a>
                                     </div>
                                 </div>
 
                                 <!-- CARD 4: Alton NIBRS -->
                                 <div class="dashboard-card">
                                     <div class="dashboard-card-header" style="margin-bottom: 20px;">
-                                        <span class="page-subheader ignore">Alton NIBRS-Crime</span>
+                                        <span class="page-subheader ignore"><a href="https://ccsvp.shinyapps.io/Altonpublic/" target="_blank">Alton NIBRS-Crime</a></span>
                                     </div>
                                     <div class="dashboard-card-body">
-                                        <div class="iframe-container" style="position: relative; overflow: hidden;">
+                                        <!-- Desktop Display: Interactive Iframe -->
+                                        <div class="iframe-container hide-on-mobile" style="position: relative; overflow: hidden;">
                                             <div class="iframe-overlay" onclick="loadIframe(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/alton-nibrs.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; cursor: pointer; color: white;">
                                                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                                     <span class="prompt-regular" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Alton NIBRS-Crime</span>
@@ -114,16 +133,22 @@
                                             </div>
                                             <iframe data-src="https://ccsvp.shinyapps.io/Altonpublic/" width="1280px" height="853px" style="transform-origin: 0 0; border: none;"></iframe>
                                         </div>
+
+                                        <!-- Mobile Display: Clickable Picture linked to Dashboard -->
+                                        <a href="https://ccsvp.shinyapps.io/Altonpublic/" target="_blank" class="iframe-container hide-on-desktop" style="display: block; position: relative; overflow: hidden; text-decoration: none;">
+                                            <img src="../images/alton-nibrs.png" alt="Alton NIBRS-Crime" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                        </a>
                                     </div>
                                 </div>
 
                                 <!-- CARD 5: Dutch Crime Dashboard -->
                                 <div class="dashboard-card">
                                     <div class="dashboard-card-header" style="margin-bottom: 20px;">
-                                        <span class="page-subheader ignore">Dutch Crime Dashboard</span>
+                                        <span class="page-subheader ignore"><a href="https://ccsvp.shinyapps.io/crime_map_app/" target="_blank">Dutch Crime Dashboard</a></span>
                                     </div>
                                     <div class="dashboard-card-body">
-                                        <div class="iframe-container" style="position: relative; overflow: hidden;">
+                                        <!-- Desktop Display: Interactive Iframe -->
+                                        <div class="iframe-container hide-on-mobile" style="position: relative; overflow: hidden;">
                                             <div class="iframe-overlay" onclick="loadIframe(this)" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/dutch-crime.png'); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 10; cursor: pointer; color: white;">
                                                 <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                                                     <span class="prompt-regular" style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">Dutch Crime Dashboard</span>
@@ -132,6 +157,11 @@
                                             </div>
                                             <iframe data-src="https://ccsvp.shinyapps.io/crime_map_app/" width="1280px" height="853px" style="transform-origin: 0 0; border: none;"></iframe>
                                         </div>
+
+                                        <!-- Mobile Display: Clickable Picture linked to Dashboard -->
+                                        <a href="https://ccsvp.shinyapps.io/crime_map_app/" target="_blank" class="iframe-container hide-on-desktop" style="display: block; position: relative; overflow: hidden; text-decoration: none;">
+                                            <img src="../images/dutch-crime.png" alt="Dutch Crime Dashboard" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                        </a>
                                     </div>
                                 </div>
 
@@ -154,7 +184,7 @@
                     <br><br>
 
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
-                        <span class="page-subheader" style="">Data Reports</span>
+                        <span class="page-subheader">Data Reports</span>
                     </div>
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">

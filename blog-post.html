@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-    
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCSVP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,36 +12,28 @@
     <script src="main.js" defer></script>
     <script src="blog-post.js" defer></script>
     <script src="blog-post-data.js" defer></script>
-
-        
-    
 </head>
     
 <body>
     <site-topbar></site-topbar>
     
-    <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
-    <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
-        <div style="display: flex; flex: 1 1 0px;"> </div>
-
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column; position: relative;">
-            <img id="hero-image" src="" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; " alt="Home Hero Image">
-            
-            
+    <!-- 1. HERO IMAGE -->
+    <div id="hero-wrapper" class="hero-wrapper">
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
+        <div style="display: flex; flex: 0 1 1600px; width: 100%; position: relative;">
+            <img id="hero-image" src="" class="hero-img" alt="Blog Hero Image">
         </div>
-
-        <div style="display: flex; flex: 1 1 0px;"> </div>
+        <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
     </div>
 
-    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
-    <div id="main-content" style="display: flex; flex-direction: row; position: relative; margin-top: -140px; z-index: 10; padding-bottom: 60px;">
+    <!-- 2. MAIN CONTENT LAYOUT -->
+    <div id="main-content" class="blog-post-main-wrapper">
         <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
 
-        <div style="display: flex; flex: 0 1 1200px; flex-direction: column;">
+        <div style="display: flex; flex: 0 1 1200px; width: 100%; flex-direction: column;">
             <div style="display: flex; width: 100%; flex-direction: column; gap: 20px;">
                 
-                
-                <div style="width: 100%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div class="full-width-mobile" style="width: 100%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
                         <span class="page-header">Blog</span>
                     </div>
@@ -49,35 +41,10 @@
                     <div class="blog-post-content" style="margin-top: 20px; display: flex; flex-direction: column;"></div>
                 </div>
 
-                <!-- <div style="width: 20%; height: fit-content; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                    
-                    <div class="dark-blue-bg" style="width: 100%; display: flex; justify-content: center; padding: 20px 0; ">
-                        <span class="prompt-regular blue-text" style="font-size: 42px; font-weight: 600; text-align: center; color: white">ABOUT</span>
-                    </div>
-
-                    
-                    <a href="services.html" class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 4px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
-                        Services
-                    </a>
-                    
-                    <a href="mission.html" class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 4px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
-                        Mission
-                    </a>
-                    
-                    <a href="contact.html" class="prompt-regular menu-btn" style="width: 100%; box-sizing: border-box; font-size: 18px; line-height: 3; border-left: 10px solid #4780b5; border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding-left: 15px; background-color: rgb(235, 235, 235)">
-                        Contact
-                    </a>
-                </div> -->
-
-                
-
             </div>
         </div>
 
         <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
     </div>
-    
 </body>
-
-
 </html>

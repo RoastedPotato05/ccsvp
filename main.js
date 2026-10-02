@@ -67,9 +67,8 @@ function initDropdown(container) {
     });
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
-    // Select all page subheaders on the current page[cite: 1]
+    // Select all page subheaders on the current page
     const subheaders = document.querySelectorAll('.page-subheader:not(.ignore)');
     const sectionsContainer = document.getElementById('sections-container');
 
@@ -87,17 +86,12 @@ document.addEventListener("DOMContentLoaded", () => {
             button.style.width = '100%';
             button.style.boxSizing = 'border-box';
             button.style.fontSize = '18px';
-            
-            // --- CHANGED STYLING FOR MULTI-LINE SUPPORT ---
-            button.style.lineHeight = '1.3'; // Normal line spacing for wrapped text
-            button.style.padding = '14px 15px'; // Consistent vertical and horizontal padding
-            // ----------------------------------------------
-
-            // button.style.borderLeft = '4px solid #4780b5';
+            button.style.lineHeight = '1.3';
+            button.style.padding = '14px 15px';
             button.style.borderBottom = '1px solid rgba(0, 0, 0, 0.2)';
             button.style.backgroundColor = 'rgb(235, 235, 235)';
             button.style.textDecoration = 'none';
-            button.style.display = 'block'; // Ensures padding applies properly to block layout
+            button.style.display = 'block';
 
             button.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -112,31 +106,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
     const sectionsCard = document.getElementById('sections-card');
     
     if (sectionsCard) {
-        // Track original width and layout parent to preserve column alignment when fixed
         const parentColumn = sectionsCard.parentElement;
         const initialWidth = parentColumn.getBoundingClientRect().width;
-        
-        // Calculate when it should stick based on its initial distance from the top of the page
         const initialOffsetTop = sectionsCard.getBoundingClientRect().top + window.scrollY;
-        const topStickyPosition = 20; // Pixels from top of screen
+        const topStickyPosition = 20;
 
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
 
             if (scrollY >= (initialOffsetTop - topStickyPosition)) {
-                // Switch to fixed tracking so it locks below the topbar
                 sectionsCard.style.position = 'fixed';
                 sectionsCard.style.top = `${topStickyPosition}px`;
                 sectionsCard.style.width = `${initialWidth}px`;
                 sectionsCard.style.zIndex = '100';
             } else {
-                // Reset back to normal layout flow when scrolled back up
                 sectionsCard.style.position = 'static';
                 sectionsCard.style.width = '100%';
             }
@@ -144,27 +131,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Responsive scaling for non-popped dashboard iframes
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.responsive-iframe-container').forEach(container => {
+        const iframe = container.querySelector('.scalable-iframe');
+        const virtualWidth = 1280;
+        const virtualHeight = 853;
 
+        function updateScale() {
+            if (!iframe || container.classList.contains('popped-out')) return;
+            const scale = container.clientWidth / virtualWidth;
+            iframe.style.transform = `scale(${scale})`;
+            container.style.height = `${virtualHeight * scale}px`;
+        }
 
-const container = document.querySelector('.responsive-iframe-container');
-
-if (container) {
-    const iframe = container.querySelector('.scalable-iframe');
-    const virtualWidth = 1280;
-    const virtualHeight = 853;
-
-    function updateScale() {
-        if (!iframe) return;
-        const scale = container.clientWidth / virtualWidth;
-        iframe.style.transform = `scale(${scale})`;
-        container.style.height = `${virtualHeight * scale}px`;
-    }
-
-    const observer = new ResizeObserver(updateScale);
-    observer.observe(container);
-    updateScale();
-}
-
+        const observer = new ResizeObserver(updateScale);
+        observer.observe(container);
+        updateScale();
+    });
+});
 
 let activePoppedContainer = null;
 let activeStackingParent = null;
@@ -176,19 +161,28 @@ function updatePoppedScale(container) {
     const virtualWidth = 1280;
     const virtualHeight = 853;
 
-    // Calculate maximum available space (92vw x 88vh)
-    const maxWidth = window.innerWidth * 0.92;
-    const maxHeight = window.innerHeight * 0.88;
+    // Define responsive margins (mobile gets tighter margins, desktop gets comfortable margins)
+    const isMobile = window.innerWidth <= 600;
+    const marginX = isMobile ? 24 : 80;
+    const marginY = isMobile ? 32 : 80;
 
-    // Scale to fit viewport up to 1.0
-    const scale = Math.min(maxWidth / virtualWidth, maxHeight / virtualHeight, 1.0);
+    const availableWidth = Math.max(120, window.innerWidth - marginX);
+    const availableHeight = Math.max(120, window.innerHeight - marginY);
 
-    // Set width and height with !important to completely override thumbnail dimensions
-    container.style.setProperty('width', `${virtualWidth * scale}px`, 'important');
-    container.style.setProperty('height', `${virtualHeight * scale}px`, 'important');
+    // Scale to fit available width and height while strictly maintaining the 1280x853 aspect ratio
+    const scale = Math.min(availableWidth / virtualWidth, availableHeight / virtualHeight);
 
-    // Apply scale to iframe
+    const targetWidth = Math.round(virtualWidth * scale);
+    const targetHeight = Math.round(virtualHeight * scale);
+
+    // Apply proportional dimensions
+    container.style.setProperty('width', `${targetWidth}px`, 'important');
+    container.style.setProperty('height', `${targetHeight}px`, 'important');
+
+    iframe.style.setProperty('width', `${virtualWidth}px`, 'important');
+    iframe.style.setProperty('height', `${virtualHeight}px`, 'important');
     iframe.style.setProperty('transform', `scale(${scale})`, 'important');
+    iframe.style.setProperty('transform-origin', '0 0', 'important');
 }
 
 function openDashboardPopup(container) {
@@ -201,7 +195,6 @@ function openDashboardPopup(container) {
         backdrop.addEventListener('click', closeDashboardPopup);
     }
 
-    // Temporarily elevate the layout container so its z-index: 10 stacking context doesn't trap the modal behind the backdrop
     activeStackingParent = container.closest('[style*="z-index: 10"]') || container.closest('[style*="z-index"]');
     if (activeStackingParent) {
         activeStackingParent.dataset.origZ = activeStackingParent.style.zIndex;
@@ -222,10 +215,15 @@ function closeDashboardPopup() {
     const iframe = activePoppedContainer.querySelector('iframe');
     activePoppedContainer.classList.remove('popped-out');
 
-    // Reset container size and iframe scale back to card thumbnail
+    // Reset container size and iframe scale back to page flow
     activePoppedContainer.style.width = '';
     activePoppedContainer.style.height = '';
-    if (iframe) iframe.style.removeProperty('transform');
+    if (iframe) {
+        iframe.style.removeProperty('width');
+        iframe.style.removeProperty('height');
+        iframe.style.removeProperty('transform');
+        iframe.style.removeProperty('transform-origin');
+    }
 
     // Restore parent z-index
     if (activeStackingParent) {
@@ -233,7 +231,18 @@ function closeDashboardPopup() {
         activeStackingParent = null;
     }
 
+    const closedContainer = activePoppedContainer;
     activePoppedContainer = null;
+
+    // Immediately restore thumbnail scale if it's a responsive container
+    if (closedContainer.classList.contains('responsive-iframe-container')) {
+        const scalableIframe = closedContainer.querySelector('.scalable-iframe');
+        if (scalableIframe) {
+            const scale = closedContainer.clientWidth / 1280;
+            scalableIframe.style.transform = `scale(${scale})`;
+            closedContainer.style.height = `${853 * scale}px`;
+        }
+    }
 }
 
 window.addEventListener('resize', () => {
@@ -253,7 +262,6 @@ function loadIframe(overlayElement) {
         iframe.src = iframe.getAttribute('data-src');
     }
 
-    // Change text to show loading status
     const textSpan = overlayElement.querySelector('.overlay-text');
     if (textSpan) {
         textSpan.textContent = "Loading interactive display...";
@@ -267,7 +275,6 @@ function loadIframe(overlayElement) {
         setTimeout(() => {
             overlayElement.style.display = 'none';
 
-            // Add popout button if not already present
             if (!container.querySelector('.dashboard-popout-btn')) {
                 const popBtn = document.createElement('button');
                 popBtn.type = 'button';
@@ -290,7 +297,6 @@ function loadIframe(overlayElement) {
                 container.appendChild(popBtn);
             }
 
-            // Add close button for popup mode if not already present
             if (!container.querySelector('.dashboard-close-btn')) {
                 const closeBtn = document.createElement('button');
                 closeBtn.type = 'button';
@@ -314,14 +320,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById('next-card-btn');
     const dotsContainer = document.getElementById('card-dots');
     const switcherContainer = document.querySelector('.card-switcher-container');
+    const viewport = document.querySelector('.dashboard-cards-viewport');
 
     if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    if (viewport) {
+        viewport.style.touchAction = 'pan-y'; // Allows natural vertical page scrolling on mobile
+    }
 
     const originalCards = Array.from(track.querySelectorAll('.dashboard-card'));
     const totalReal = originalCards.length;
     if (totalReal === 0) return;
 
-    // Create 1 indicator dot per original card
+    // Create navigation dots for the real cards
     dotsContainer.innerHTML = '';
     originalCards.forEach((_, idx) => {
         const dot = document.createElement('span');
@@ -329,22 +340,24 @@ document.addEventListener("DOMContentLoaded", () => {
         dot.setAttribute('title', `Go to dashboard ${idx + 1}`);
         dot.addEventListener('click', () => {
             stopAutoplay();
-            goToIndex(idx + 1);
+            goToDotIndex(idx);
         });
         dotsContainer.appendChild(dot);
     });
 
-    // Infinite loop: clone last card to start, and first 3 cards to end
-    const cloneLast = originalCards[totalReal - 1].cloneNode(true);
-    track.insertBefore(cloneLast, originalCards[0]);
+    // 1. Prepend an ENTIRE previous cycle (clones of cards 0..N-1)
+    for (let i = totalReal - 1; i >= 0; i--) {
+        const clone = originalCards[i].cloneNode(true);
+        track.insertBefore(clone, track.firstChild);
+    }
 
-    const clonesToAppend = originalCards.slice(0, Math.min(3, totalReal));
-    clonesToAppend.forEach(card => {
-        track.appendChild(card.cloneNode(true));
-    });
+    // 2. Append an ENTIRE next cycle (clones of cards 0..N-1)
+    for (let i = 0; i < totalReal; i++) {
+        const clone = originalCards[i].cloneNode(true);
+        track.appendChild(clone);
+    }
 
     const allCards = track.querySelectorAll('.dashboard-card');
-    let currentIndex = 1;
     let isTransitioning = false;
 
     function getStepWidth() {
@@ -354,51 +367,103 @@ document.addEventListener("DOMContentLoaded", () => {
         return cardWidth + gap;
     }
 
-    function updatePosition(animate = true) {
-        track.style.transition = animate ? 'left 0.5s ease-in-out' : 'none';
-        const step = getStepWidth();
-        track.style.left = `-${currentIndex * step}px`;
-        updateDots();
+    function getCycleWidth() {
+        return totalReal * getStepWidth();
     }
 
-    function updateDots() {
+    function getCurrentLeft() {
+        const parsed = parseFloat(track.style.left);
+        return isNaN(parsed) ? (-totalReal * getStepWidth()) : parsed;
+    }
+
+    // Seamlessly normalizes any track position into the middle cycle [ -2*cycle, -1*cycle ]
+    function normalizePosition(left) {
+        const cycle = getCycleWidth();
+        const minBound = -2 * cycle;
+        const maxBound = -cycle;
+
+        while (left < minBound) {
+            left += cycle;
+        }
+        while (left > maxBound) {
+            left -= cycle;
+        }
+        return left;
+    }
+
+    function updateDotsFromPosition(leftPos) {
+        const step = getStepWidth();
+        const rawIndex = Math.round(-leftPos / step);
+        const activeDotIdx = ((rawIndex % totalReal) + totalReal) % totalReal;
         const dots = dotsContainer.querySelectorAll('.card-dot');
-        const activeDotIdx = (currentIndex - 1 + totalReal) % totalReal;
         dots.forEach((dot, i) => {
             dot.classList.toggle('active', i === activeDotIdx);
         });
     }
 
-    function goToIndex(index) {
-        if (isTransitioning) return;
-        isTransitioning = true;
-        currentIndex = index;
-        updatePosition(true);
+    function lockToAbsolutePos(pos, animate = true) {
+        track.style.transition = animate ? 'left 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
+        track.style.left = `${pos}px`;
+        isTransitioning = animate;
+        updateDotsFromPosition(pos);
     }
 
+    function goToDotIndex(dotIdx) {
+        const step = getStepWidth();
+        const curLeft = normalizePosition(getCurrentLeft());
+        const cycle = getCycleWidth();
+
+        // Find the closest equivalent target for this dot relative to current position
+        const baseTarget = -(totalReal + dotIdx) * step;
+        const candidates = [baseTarget - cycle, baseTarget, baseTarget + cycle];
+        candidates.sort((a, b) => Math.abs(a - curLeft) - Math.abs(b - curLeft));
+
+        lockToAbsolutePos(candidates[0], true);
+    }
+
+    // "Next" button: finds the first card wall to the right of visible left edge
     function nextSlide() {
-        if (isTransitioning) return;
-        goToIndex(currentIndex + 1);
+        const currentLeft = getCurrentLeft();
+        const step = getStepWidth();
+        const offsetRatio = -currentLeft / step;
+
+        let nextIdx;
+        if (Math.abs(offsetRatio - Math.round(offsetRatio)) > 0.05) {
+            nextIdx = Math.floor(offsetRatio) + 1;
+        } else {
+            nextIdx = Math.round(offsetRatio) + 1;
+        }
+        lockToAbsolutePos(-nextIdx * step, true);
     }
 
+    // "Prev" button: finds the first card wall to the left
     function prevSlide() {
-        if (isTransitioning) return;
-        goToIndex(currentIndex - 1);
+        const currentLeft = getCurrentLeft();
+        const step = getStepWidth();
+        const offsetRatio = -currentLeft / step;
+
+        let prevIdx;
+        if (Math.abs(offsetRatio - Math.round(offsetRatio)) > 0.05) {
+            prevIdx = Math.ceil(offsetRatio) - 1;
+        } else {
+            prevIdx = Math.round(offsetRatio) - 1;
+        }
+        lockToAbsolutePos(-prevIdx * step, true);
     }
 
     track.addEventListener('transitionend', (e) => {
         if (e.propertyName !== 'left') return;
         isTransitioning = false;
-        if (currentIndex > totalReal) {
-            currentIndex = 1;
-            updatePosition(false);
-        } else if (currentIndex < 1) {
-            currentIndex = totalReal;
-            updatePosition(false);
+
+        // Silently normalize back to the center cycle without any visual jump
+        const curLeft = getCurrentLeft();
+        const normLeft = normalizePosition(curLeft);
+        if (normLeft !== curLeft) {
+            track.style.transition = 'none';
+            track.style.left = `${normLeft}px`;
         }
     });
 
-    // Autoplay every 4 seconds
     let autoplayTimer = setInterval(nextSlide, 4000);
 
     function stopAutoplay() {
@@ -420,9 +485,122 @@ document.addEventListener("DOMContentLoaded", () => {
         switcherContainer.addEventListener('click', stopAutoplay);
     }
 
-    window.addEventListener('resize', () => {
-        updatePosition(false);
+    // ==========================================
+    // INFINITE SMOOTH DRAGGING / SWIPING
+    // ==========================================
+    let isPointerDown = false;
+    let isDragging = false;
+    let wasDragged = false;
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocityX = 0;
+
+    const dragTarget = viewport || track;
+
+    dragTarget.addEventListener('pointerdown', (e) => {
+        stopAutoplay();
+        isPointerDown = true;
+        isDragging = false;
+        wasDragged = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        lastX = e.clientX;
+        lastTime = performance.now();
+        velocityX = 0;
+
+        // Always start drag from a normalized center position
+        const normalized = normalizePosition(getCurrentLeft());
+        track.style.transition = 'none';
+        track.style.left = `${normalized}px`;
+        startLeft = normalized;
+        isTransitioning = false;
     });
 
-    updatePosition(false);
+    window.addEventListener('pointermove', (e) => {
+        if (!isPointerDown) return;
+
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+
+        if (!isDragging) {
+            if (Math.abs(deltaX) > 8 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                isDragging = true;
+                wasDragged = true;
+                track.style.transition = 'none';
+            } else if (Math.abs(deltaY) > 8) {
+                isPointerDown = false; // Natural vertical page scroll
+                return;
+            }
+        }
+
+        if (isDragging) {
+            const now = performance.now();
+            const dt = now - lastTime;
+            if (dt > 10) {
+                velocityX = (e.clientX - lastX) / dt;
+                lastX = e.clientX;
+                lastTime = now;
+            }
+
+            let newLeft = startLeft + deltaX;
+            const cycle = getCycleWidth();
+
+            // Seamless infinite drag: shift cycle if pulled beyond buffer
+            if (newLeft < -2 * cycle) {
+                startLeft += cycle;
+                newLeft += cycle;
+            } else if (newLeft > -cycle) {
+                startLeft -= cycle;
+                newLeft -= cycle;
+            }
+
+            track.style.left = `${newLeft}px`;
+            updateDotsFromPosition(newLeft);
+        }
+    });
+
+    function finishDrag() {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+
+        if (isDragging) {
+            isDragging = false;
+            const currentLeft = getCurrentLeft();
+
+            // Soft coast momentum based on swipe speed
+            const coastDistance = velocityX * 140;
+            const targetLeft = currentLeft + coastDistance;
+
+            track.style.transition = 'left 0.4s ease-out';
+            track.style.left = `${targetLeft}px`;
+            updateDotsFromPosition(targetLeft);
+        }
+    }
+
+    window.addEventListener('pointerup', finishDrag);
+    window.addEventListener('pointercancel', finishDrag);
+
+    // Prevent card link clicks when finishing a swipe
+    track.addEventListener('click', (e) => {
+        if (wasDragged) {
+            e.preventDefault();
+            e.stopPropagation();
+            wasDragged = false;
+        }
+    }, true);
+
+    window.addEventListener('resize', () => {
+        const curLeft = normalizePosition(getCurrentLeft());
+        track.style.transition = 'none';
+        track.style.left = `${curLeft}px`;
+    });
+
+    // Initialize track in the center cycle (card 1)
+    const initialPos = -totalReal * getStepWidth();
+    track.style.transition = 'none';
+    track.style.left = `${initialPos}px`;
+    updateDotsFromPosition(initialPos);
 });

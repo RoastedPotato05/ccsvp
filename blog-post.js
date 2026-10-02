@@ -30,12 +30,16 @@ try {
 }
 
   // Hero image setup...
+  const heroWrapper = document.getElementById("hero-wrapper");
   const heroImage = document.getElementById("hero-image");
+  const mainContent = document.getElementById("main-content");
+
   if (heroImage && currentPost.card.thumbnail) {
     heroImage.src = currentPost.card.thumbnail;
-  } else if (heroImage) {
-    heroImage.style.display = "none";
-    document.getElementById("main-content").style.marginTop = "80px";
+  } else {
+    // Hide the entire hero bar if there is no image
+    if (heroWrapper) heroWrapper.style.display = "none";
+    if (mainContent) mainContent.classList.add("no-hero");
   }
 
   const postContentContainer = document.querySelector(".blog-post-content");

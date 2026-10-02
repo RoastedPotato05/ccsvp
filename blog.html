@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-    
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCSVP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,15 +33,14 @@
         <div style="display: flex; flex: 1 1 0px;"> </div>
     </div> -->
 
-    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
-    <div style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
+    <!-- 2. MAIN CONTENT LAYOUT -->
+    <div class="mobile-page-wrapper" style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
         <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
 
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column;">
+        <div style="display: flex; flex: 0 1 1600px; width: 100%; flex-direction: column; padding: 0px 30px;">
             <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
                 
-                
-                <div style="width: 80%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div class="full-width-mobile" style="width: 100%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
                         <span class="page-header">Blog</span>
                     </div>
