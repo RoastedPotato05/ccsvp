@@ -5,7 +5,7 @@ class SiteTopbar extends HTMLElement {
                 <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
 
                 <div class="red-bg topbar-center">
-                    <a href="/ccsvp/index.html" style="font-size: 34px; color: white; font-weight: 600; letter-spacing: 2px; text-decoration: none;" class="michroma-regular">CCSVP</a>
+                    <a href="/index.html" style="font-size: 34px; color: white; font-weight: 600; letter-spacing: 2px; text-decoration: none;" class="michroma-regular">CCSVP</a>
 
                     <button class="topbar-hamburger-btn" id="topbar-hamburger-btn" aria-label="Toggle navigation">
                         <span></span>
@@ -22,9 +22,9 @@ class SiteTopbar extends HTMLElement {
                             
                             <!-- DROPDOWN MENU -->
                             <div id="about-dropdown-menu" class="dropdown-menu" style="display: flex; opacity: 0; visibility: hidden; transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out; position: absolute; top: 70px; left: 0; width: 100%; box-sizing: border-box; background-color: #8b2a2a; box-shadow: 0px 8px 16px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column;">
-                                <a href="/ccsvp/about/services.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Services</a>
-                                <a href="/ccsvp/about/mission.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Mission</a>
-                                <a href="/ccsvp/about/contact.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px;">Contact</a>
+                                <a href="/about/services.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Services</a>
+                                <a href="/about/mission.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Mission</a>
+                                <a href="/about/contact.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px;">Contact</a>
                             </div>
                         </div>
                         
@@ -36,18 +36,18 @@ class SiteTopbar extends HTMLElement {
                             
                             <!-- DROPDOWN MENU -->
                             <div id="projects-dropdown-menu" class="dropdown-menu" style="display: flex; opacity: 0; visibility: hidden; transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out; position: absolute; top: 70px; left: 0; width: 100%; box-sizing: border-box; background-color: #8b2a2a; box-shadow: 0px 8px 16px rgba(0,0,0,0.25); z-index: 1000; flex-direction: column;">
-                                <a href="/ccsvp/projects-research/emergency-reports.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Emergency Reports</a>
-                                <a href="/ccsvp/projects-research/data-analytics.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Data Analytics</a>
-                                <a href="/ccsvp/projects-research/virtual-reality.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Virtual Reality</a>
-                                <a href="/ccsvp/projects-research/llm-interface.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px;">LLM Interface</a>
+                                <a href="/projects-research/emergency-reports.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Emergency Reports</a>
+                                <a href="/projects-research/data-analytics.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Data Analytics</a>
+                                <a href="/projects-research/virtual-reality.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.15);">Virtual Reality</a>
+                                <a href="/projects-research/llm-interface.html" class="prompt-regular menu-btn" style="color: white; padding: 15px 20px; text-decoration: none; display: block; font-size: 16px;">LLM Interface</a>
                             </div>
                         </div>
 
-                        <a href="/ccsvp/people.html" id="people-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                        <a href="/people.html" id="people-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
                             PEOPLE
                         </a>
 
-                        <a href="/ccsvp/blog.html" id="blog-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                        <a href="/blog.html" id="blog-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
                             BLOG
                         </a>
                     </div>
