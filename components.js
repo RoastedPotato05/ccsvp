@@ -1,16 +1,19 @@
 class SiteTopbar extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <div style="display: flex; flex-direction: row; height: 70px; box-sizing: border-box;">
-               <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
+            <div class="topbar-container">
+                <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
 
-                <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 300px; padding: 0px 20px; align-items: center; border-bottom: #8b2a2a 8px solid;">
-                    <a href="/ccsvp/index.html" style="font-size: 40px; color: white; font-weight: 600; letter-spacing: 2px; text-decoration: none;" class="michroma-regular">CCSVP</a>
-                </div>
-                
-                <div class="red-bg" style="display: flex; height: 100%; flex: 0 1 1250px; padding: 0px 20px; align-items: center; justify-content: right; border-bottom: #8b2a2a 8px solid;">
-                    <div style="flex-direction: row; display: flex;">
+                <div class="red-bg topbar-center">
+                    <a href="/ccsvp/index.html" style="font-size: 34px; color: white; font-weight: 600; letter-spacing: 2px; text-decoration: none;" class="michroma-regular">CCSVP</a>
 
+                    <button class="topbar-hamburger-btn" id="topbar-hamburger-btn" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <div class="topbar-links-wrapper" id="topbar-links-wrapper">
                         <!-- ABOUT DROPDOWN CONTAINER -->
                         <div id="about-dropdown-container" class="dropdown-container" style="position: relative; display: inline-block; height: 70px;">
                             <button id="about-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
@@ -40,12 +43,12 @@ class SiteTopbar extends HTMLElement {
                             </div>
                         </div>
 
-                        <a href="/ccsvp/people.html" id="people-dropdown-btn" class="topbar-btn " style="height: 70px; display:flex; align-items: center;">
-                            PEOPLE <span id="people-dropdown-arrow" class=""></span>
+                        <a href="/ccsvp/people.html" id="people-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
+                            PEOPLE
                         </a>
 
                         <a href="/ccsvp/blog.html" id="blog-dropdown-btn" class="topbar-btn" style="height: 70px; display:flex; align-items: center;">
-                            BLOG <span id="blog-dropdown-arrow" class=""></span>
+                            BLOG
                         </a>
                     </div>
                 </div>
@@ -53,6 +56,14 @@ class SiteTopbar extends HTMLElement {
                 <div class="red-bg" style="display: flex; height: 100%; flex: 1 1 0px; border-bottom: #8b2a2a 8px solid;"></div>
             </div>
         `;
+
+        const hamburgerBtn = this.querySelector('#topbar-hamburger-btn');
+        const linksWrapper = this.querySelector('#topbar-links-wrapper');
+        if (hamburgerBtn && linksWrapper) {
+            hamburgerBtn.addEventListener('click', () => {
+                linksWrapper.classList.toggle('open');
+            });
+        }
     }
 }
 customElements.define('site-topbar', SiteTopbar);

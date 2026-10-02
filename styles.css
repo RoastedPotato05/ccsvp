@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* Remove the forced scrollbar slot */
 html {
   overflow-y: auto; 
@@ -5,13 +9,125 @@ html {
   scroll-padding-top: 10px;
 }
 
-/* Force the body to stay at 100% of the viewport width, 
-   preventing the layout from recalculating when a scrollbar pops up */
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ===================================================
+   RESPONSIVE PAGE LAYOUT CLASSES
+   =================================================== */
+.hero-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 8px;
+}
+
+.hero-img {
+  width: 100%;
+  height: 260px; /* Shorter on mobile */
+  object-fit: cover;
+  display: block;
+  object-position: center 80%;
+  filter: brightness(77%) contrast(145%) saturate(165%);
+}
+
+.home-main-wrapper {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-top: 0px;
+  z-index: 10;
+  padding: 16px 16px 60px 16px;
+}
+
+.home-columns {
+  display: flex;
+  width: 100%;
+  flex-direction: column; /* Stacked on mobile */
+  gap: 20px;
+}
+
+.home-left-col {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.home-right-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Mobile utilities */
+@media (max-width: 900px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  .full-width-mobile {
+    width: 100% !important;
+    padding: 16px !important; /* Padding inside the white card */
+  }
+
+  .mobile-page-wrapper {
+    margin-top: 15px !important;
+    padding: 0 10px 60px 10px !important; /* Exactly 4px on left and right */
+  }
+
+  /* Clear the inline 30px side padding from the middle container */
+  .mobile-page-wrapper > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Hide empty gutter divs on mobile so the card can take full width */
+  .mobile-page-wrapper > div:first-child,
+  .mobile-page-wrapper > div:last-child {
+    display: none !important;
+  }
+
+  /* Also apply the 4px gutters to the home page */
+  .home-main-wrapper {
+    padding: 10px 10px 60px 10px !important;
+  }
+  .home-main-wrapper > div:first-child,
+  .home-main-wrapper > div:last-child {
+    display: none !important;
+  }
+}
+
+/* Desktop view (900px and wider) */
+@media (min-width: 900px) {
+  .hero-img {
+    height: 660px;
+  }
+
+  .home-main-wrapper {
+    margin-top: -140px; /* Pull up over hero on desktop */
+    padding: 0 0 60px 0;
+  }
+
+  .home-columns {
+    flex-direction: row; /* Side-by-side on desktop */
+  }
+
+  .home-left-col {
+    width: 60%;
+    padding: 30px;
+  }
+
+  .home-right-col {
+    width: 40%;
+  }
 }
 
 
@@ -140,17 +256,117 @@ body {
 }
 
 .page-header {
-  padding: 0px 0px 0px 15px; /* Adds space between the blue border and text */
-  font-size: 70px;
+  padding: 0px 0px 0px 12px;
+  font-size: 36px; /* Scales down on mobile so it doesn't wrap off-screen */
   font-family: 'Prompt', sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
-  border-left: 16px solid #4780b5; /* Moved border here */
-  display: inline-block;
-  width: fit-content;
-  display: flex;
+  border-left: 10px solid #4780b5;
+  display: inline-flex;
   align-items: center;
   height: fit-content;
+}
+
+@media (min-width: 900px) {
+  .page-header {
+    font-size: 70px;
+    border-left-width: 16px;
+    padding-left: 15px;
+  }
+}
+
+/* ===================================================
+   TOPBAR RESPONSIVE NAVIGATION STYLES
+   =================================================== */
+.topbar-container {
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.topbar-center {
+  display: flex;
+  height: 100%;
+  flex: 0 1 1550px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  border-bottom: #8b2a2a 8px solid;
+  position: relative;
+}
+
+.topbar-links-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.topbar-hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.topbar-hamburger-btn span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  border-radius: 2px;
+}
+
+/* Mobile topbar (screens 900px and narrower) */
+@media (max-width: 900px) {
+  .topbar-hamburger-btn {
+    display: block;
+  }
+
+  .topbar-links-wrapper {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    background-color: #8b2a2a;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+  }
+
+  .topbar-links-wrapper.open {
+    display: flex;
+  }
+
+  .topbar-btn {
+    width: 100%;
+    height: auto !important;
+    padding: 15px 20px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    justify-content: space-between;
+    font-size: 20px;
+  }
+
+  .dropdown-container {
+    width: 100%;
+    height: auto !important;
+  }
+
+  .dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    background-color: #6d1f1f !important;
+    display: none !important; /* Takes 0 height until clicked */
+  }
+
+  .dropdown-menu.menu-visible {
+    display: flex !important; /* Expands when tapped */
+  }
 }
 
 .page-subheader {
@@ -168,11 +384,12 @@ body {
 }
 
 .menu-btn {
+  display: block;
   position: relative;
   cursor: pointer;
   overflow: hidden;
   text-decoration: none;
-  color: Color;
+  color: inherit;
 }
 
 .menu-btn::after {

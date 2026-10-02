@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 <head>
     <title>CCSVP</title>
@@ -31,15 +32,14 @@
         <div style="display: flex; flex: 1 1 0px;"> </div>
     </div> -->
 
-    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
-    <div style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
+    <!-- 2. MAIN CONTENT LAYOUT -->
+    <div class="mobile-page-wrapper" style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
         <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
 
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column;">
+        <div style="display: flex; flex: 0 1 1600px; width: 100%; flex-direction: column;">
             <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
                 
-                
-                <div style="width: 75%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div class="full-width-mobile" style="width: 75%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
                         <span class="page-header">People</span>
                     </div>
@@ -90,7 +90,7 @@
                     
                 </div> 
 
-                <div style="width: 25%; height: fit-content; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div class="hide-on-mobile" style="width: 25%; height: fit-content; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     
                     <div id="sections-card" style="display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15); width: 100%;">
                         <div class="dark-red-bg" style="width: 100%; display: flex; justify-content: center; padding: 20px 0;">

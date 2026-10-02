@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCSVP</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,40 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Prompt&family=Unica+One&display=swap" rel="stylesheet">
     <script src="../components.js" defer></script>
     <script src="../main.js" defer></script>
-
-    
-    
 </head>
     
 <body>
     <site-topbar></site-topbar>
     
-    <!-- 1. HERO IMAGE WITH MATCHING GUTTERS & WIDTH -->
-    <!-- <div style="display: flex; flex-direction: row; position: relative; margin-top: 8px;">
-        <div style="display: flex; flex: 1 1 0px;"> </div>
-
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column; position: relative;">
-            <img src="images/about.jpg" style="width: 100%; height: 660px; object-fit: cover; display: block; object-position: center 80%; " alt="Home Hero Image">
-            
-            
-        </div>
-
-        <div style="display: flex; flex: 1 1 0px;"> </div>
-    </div> -->
-
-    <!-- 2. MAIN CONTENT LAYOUT (Pulled up with negative margin to overlap) -->
-    <div style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
+    <!-- MAIN CONTENT LAYOUT -->
+    <div class="mobile-page-wrapper" style="display: flex; flex-direction: row; position: relative; margin-top: 80px; z-index: 10; padding-bottom: 60px;">
         <div style="display: flex; flex: 1 1 0px;"> <!-- Left Gutter --> </div>
 
-        <div style="display: flex; flex: 0 1 1600px; flex-direction: column; padding: 0px 30px;">
+        <div style="display: flex; flex: 0 1 1600px; width: 100%; flex-direction: column; padding: 0px 30px;">
             <div style="display: flex; width: 100%; flex-direction: row; gap: 20px;">
                 
-                
-                <div style="width: 75%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div class="full-width-mobile" style="width: 75%; padding: 30px; display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
                         <span class="page-header">Data Analytics</span>
                     </div>
-                    
                     
                     <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
                         We develop crime mapping and analysis solutions for a wide range of agencies and places. Contact us for more details on how we can transform CAD and RMS data into actionable intelligence.
@@ -51,15 +33,12 @@
                     <br><br>
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-bottom: 20px;">
-                        <span class="page-subheader" style="font-size: 54px;">Crime Dashboards</span>
+                        <span class="page-subheader" style="">Crime Dashboards</span>
                     </div>
 
-
                     <div class="card-switcher-container">
-                        
                         <!-- Visible Viewport (Overflow Hidden) -->
                         <div class="dashboard-cards-viewport">
-                            
                             <!-- Sliding Track containing horizontal line of cards -->
                             <div class="dashboard-cards-track" id="dashboard-track">
                                 
@@ -171,15 +150,12 @@
                                 <span class="nav-arrow next"></span>
                             </button>
                         </div>
-
                     </div>
                     <br><br>
 
-
                     <div style="display: inline-flex; width: fit-content; align-items: center;">
-                        <span class="page-subheader" style="font-size: 54px;">Data Reports</span>
+                        <span class="page-subheader" style="">Data Reports</span>
                     </div>
-
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">Smart Policing Initiative Grant: License Plate Readers and Crime Analysis in Alton</span>
@@ -189,7 +165,6 @@
                         Alton PD was awarded an 800K grant from the Bureaus of Justice Assistance to expand its License Plate Reader network and develop a crime analysis approach. CCSVP will assist the Alton PD with the implementation and evaluation of the project
                     </p>
 
-
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">Rural and Small Department Violent Crime Reduction Program: Collinsville PD</span>
                     </div>
@@ -197,7 +172,6 @@
                     <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
                         Collinsville PD was awarded nearly 300k to expand its license plate cameras and digital forensics technology. CCSVP will assist with implementation and evaluation of the project 
                     </p>
-
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">PROWD, Prisoner Re-entry and Workforce Development (with C-PAN)</span>
@@ -207,7 +181,6 @@
                         Funded by the Department of Labor, this large multi-year, multi-agency project seeks to improve re-entry for returning citizens from federal correctional institutions. CCSVPs role in the project is to determine re-entry characteristics and needs.                    
                     </p>
 
-
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">Smart Policing Initiative: ShotSpotter Expansion Evaluation</span>
                     </div>
@@ -215,7 +188,6 @@
                     <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
                         The SLMPD partnered with CCSVP on evaluation of its grant supported expansion of SoundThinking's ShotSpotter system in the Dutchtown/Mt. Pleasant neighborhood in South St. Louis. Results indicate gun crime reductions and increased awareness of gunfire. The study also found the system detected gunfire reliably and found little indication of a high rate of false positives. The evaluation is available <a href="https://www.siue.edu/ccsvp/pdf/SPIShotSpotterSLMPD2026.pdf" target="_blank" class="red-text">here</a>.
                     </p>
-
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">Smart Policing Initiative Grant: Mobile Surveillance Trailers</span>
@@ -227,7 +199,6 @@
                         The project received the Arthur J. Barnett Planner of the Year Award (2020) of the <a href="https://www.theiacp.org/" target="_blank" class="red-text">International Association of Chiefs of Police</a> and was featured in a recent Bureau of Justice Assistance <a href="https://www.youtube.com/watch?v=fdYrBKTIrHk" target="_blank" class="red-text">webinar</a>. 
                     </p>
 
-
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">Gunshot Detection: Reducing Gunfire through Acoustic Technology</span>
                     </div>
@@ -235,7 +206,6 @@
                     <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
                         In 2022, the Bureau of Justice Assistance and Arizona State University‘s Problem Oriented Policing Center published a <a href="https://popcenter.asu.edu/content/gunshot-detection" target="_blank" class="red-text">Problem Oriented Policing Guide on gunshot detection systems</a> authored by Dr. Mares, director of CCSVP. The guide covers recent research on the topic and describes best practices for the use of systems that monitor gunfire and can direct resources to the scene. A <a href="https://www.youtube.com/watch?v=ODsJOjJ7v9c" target="_blank" class="red-text">webinar</a> hosted by BJA and CNA accompanied the release of the guide.
                     </p>
-
 
                     <div style="display: inline-flex; width: fit-content; align-items: center; margin-top: 40px;">
                         <span class="page-subheader ignore">A Cost-Benefit Analysis of ShotSpotter in Winston-Salem (updated)</span>
@@ -249,13 +219,10 @@
                     <p class="prompt-regular" style="font-size: 18px; line-height: 1.6; color: #555;">
                         For ways we can assist you, please view our services (link to services) or contact us directly at <span class="red-text">ccsvpbelleville@siue.edu</span>.
                     </p>
-                    
-                    
                 </div>
 
-                <div style="width: 25%; height: fit-content; display: flex; flex-direction: column; gap: 40px;">
-
-                    <!-- PROJECTS & RESEARCH CARD (Scrolls normally) -->
+                <div class="hide-on-mobile" style="width: 25%; height: fit-content; display: flex; flex-direction: column; gap: 40px;">
+                    <!-- PROJECTS & RESEARCH CARD -->
                     <div style="display: flex; flex-direction: column; background-color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                         <div class="dark-blue-bg" style="width: 100%; display: flex; justify-content: center; padding: 20px 0;">
                             <span class="prompt-regular blue-text" style="font-size: 42px; font-weight: 600; text-align: center; color: white">PROJECTS & RESEARCH</span>
@@ -285,20 +252,12 @@
                             <!-- Dynamic buttons appear here -->
                         </div>
                     </div>
-
                 </div>
-
-                
 
             </div>
         </div>
 
         <div style="display: flex; flex: 1 1 0px;"> <!-- Right Gutter --> </div>
     </div>
-
-    
-    
 </body>
-
-    
 </html>

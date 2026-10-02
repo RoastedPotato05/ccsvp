@@ -17,6 +17,7 @@ function initDropdown(container) {
     function showMenu() {
         menu.style.opacity = '1';
         menu.style.visibility = 'visible';
+        menu.classList.add('menu-visible');
         if (arrow) arrow.style.transform = 'rotate(225deg)';
         if (btn) btn.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
     }
@@ -24,6 +25,7 @@ function initDropdown(container) {
     function hideMenu() {
         menu.style.opacity = '0';
         menu.style.visibility = 'hidden';
+        menu.classList.remove('menu-visible');
         if (arrow) arrow.style.transform = 'rotate(45deg)';
         if (btn && !isHovered) {
             btn.style.backgroundColor = 'transparent';
@@ -31,11 +33,13 @@ function initDropdown(container) {
     }
 
     container.addEventListener('mouseenter', () => {
+        if (window.innerWidth <= 900) return; // Disable hover in mobile / hamburger mode
         isHovered = true;
         if (!ignoreHoverUntilLeave) showMenu();
     });
 
     container.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= 900) return; // Disable hover in mobile / hamburger mode
         isHovered = false;
         ignoreHoverUntilLeave = false;
         if (!isClickedOpen) hideMenu();
